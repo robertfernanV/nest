@@ -1,0 +1,32 @@
+.familyItem{
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+
+    &__img{
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        width: 150px;
+        height: 150px;
+    }
+    &__name{
+        font-family:'Happy_Monkey';
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 10px;
+    }
+
+    &__new{
+        background-color: #FB9825;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+    }
+}
