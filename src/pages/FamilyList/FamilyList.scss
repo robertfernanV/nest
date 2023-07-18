@@ -1,0 +1,14 @@
+.familyList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Define dos columnas de igual tamaño */
+    grid-gap: 5px; /* Espacio entre los elementos */
+}
+
+.familyList__title {
+    display: flex;
+    justify-content: center;
+    font-family:'Happy_Monkey';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
