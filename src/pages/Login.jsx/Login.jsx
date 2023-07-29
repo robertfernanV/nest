@@ -4,10 +4,16 @@ import logoHome from "../../assets/logohome.png";
 import ButtonBase from "@mui/material/ButtonBase";
 import TextField from "@mui/material/TextField";
 import "./Login.scss";
+import { auth } from "../../firebase/firebaseConfig";
+import { setLoading, setError, setUser } from  "../../store/slices/authSlice"
+import { useDispatch } from "react-redux";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { fetchUsers } from  "../../store/slices/userSlice"
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" }); //{email:"",password:""
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,7 +27,18 @@ const Login = () => {
     setFormData({ email: "", password: "" });
   };
 
-  const handleLogin = async () => {};
+  const handleLogin = async () => {
+    dispatch(setLoading(true));
+    try {
+      const response = await signInWithEmailAndPassword(auth,formData.email, formData.password);
+      dispatch(setUser(response.user));
+      dispatch(fetchUsers());
+    } catch (error) {
+      dispatch(setError(error.message));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
 
   return (
     <>
@@ -161,6 +178,7 @@ const Login = () => {
                   marginBottom: "15px",
                 }}
                 fullWidth
+                onClick={loginWithGoogle}
               >
                 Login con Google
               </ButtonBase>
@@ -175,6 +193,7 @@ const Login = () => {
                   marginBottom: "50px",
                 }}
                 fullWidth
+               
               >
                 Login con Facebook
               </ButtonBase>
