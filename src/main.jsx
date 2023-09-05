@@ -1,46 +1,65 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Login from "./pages/Login.jsx/Login.jsx";
+// import Login from "./pages/Login.jsx/Login.jsx";
 import "./index.scss";
-import { store } from "./store/store.js";
-import { Provider } from "react-redux";
-
-// import NavBar from "./components/NavBar/NavBar.jsx";
+import NavBar from "./components/NavBar/NavBar.jsx";
 // import FamilyItem from "./components/FamilyItem/FamilyItem";
-// import FamilyList from "./pages/FamilyList/FamilyList";
+import FamilyList from "./pages/FamilyList/FamilyList";
+import FamilyParticipants from "./pages/FamilyParticipants.jsx/FamilyParticipants";
+import NewFamily from "./pages/NewFamily/NewFamily";
+import BabyDetails from "./pages/BabyDetails/BabyDetails";
+import CreateNewFamily from "./pages/NewFamily/CreateNewFamily";
+import AddBaby from "./pages/AddBaby/AddBaby";
+import AddMember from "./pages/AddMember/AddMember";
+import AddBabysitter from "./pages/AddBabysitter/AddBabysitter";
+import FamilyGroup from "./pages/FamilyGroup/FamilyGroup";
+import EditFamily from "./pages/EditFamily/EditFamily";
+import SelectBaby from "./pages/SelectBaby/SelectBaby";
+import EditBaby from "./pages/EditBaby/EditBaby";
+import ConfigurationMenu from "./pages/ConfigurationMenu/ConfigurationMenu";
 
-// const families = [
-//   {
-//     id: "sadsadsada",
-//     name: "Fernández",
-//     image: "https://picsum.photos/200/300",
-//   },
-//   {
-//     id: "sadsadsada",
-//     name: "López",
-//     image: "https://picsum.photos/200/300",
-//   },
-//   {
-//     id: "sadsadsada",
-//     name: "Rivas",
-//   },
-//   {
-//     id: "sadsadsada",
-//     name: "González",
-//   },
-//   {
-//     id: "0",
-//     name: "Nueva Familia",
-//   },
-// ];
+const families = [
+  {
+    id: "sadsadsada",
+    name: "Fernández",
+    image: "https://picsum.photos/200/300",
+  },
+  {
+    id: "sadsadsada",
+    name: "López",
+    image: "https://picsum.photos/200/300",
+  },
+  {
+    id: "sadsadsada",
+    name: "Rivas",
+  },
+  {
+    id: "sadsadsada",
+    name: "González",
+  },
+  {
+    id: "0",
+    name: "Nueva Familia",
+  },
+];
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      {/* <App /> */}
-      <Login />
-      {/* <NavBar menuTitle={"FAMILIA FERNANDEZ"} /> */}
-      {/* <FamilyList families={families} /> */}
-    </Provider>
+    {/* <App /> */}
+    {/* <Login /> */}
+    <NavBar menuTitle={"FLIA. FERNÁNDEZ"} />
+    {/* <FamilyList families={families} /> */}
+    {/* <FamilyParticipants /> */}
+    {/* <BabyDetails /> */}
+    {/* <NewFamily /> */}
+    {/* <CreateNewFamily /> */}
+    {/* <AddBaby /> */}
+    {/* <AddMember /> */}
+    {/* <AddBabysitter /> */}
+    {/* <FamilyGroup/> */}
+    {/* <EditFamily/> */}
+    {/* <SelectBaby/> */}
+    {/* <EditBaby/> */}
+    <ConfigurationMenu />
   </React.StrictMode>
 );
