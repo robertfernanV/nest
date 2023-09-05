@@ -1,0 +1,49 @@
+.createNewFamily__svg {
+  border-radius: 10px;
+  border: 1px solid #fb9825;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.createNewFamily__svg:active {
+  border: 1px solid #91693d;
+}
+
+.createNewFamily__newMember {
+  background-color: #fb9825;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #fb9825;
+}
+
+.createNewFamily__newMember:active {
+  background-color: #e28821;
+  border: 1px solid #91693d;
+}
+.createNewFamily__saveCancelBtn {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Inter";
+  color: #fffdfd;
+
+  width: 160px;
+  height: 45px;
+  top: 731px;
+  left: 183px;
+  border-radius: 20px;
+  border: none;
+
+  box-shadow: 0px 4px 4px 0px #00000040;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.createNewFamily__save {
+  background-color: #fb9825;
+}
+
+.createNewFamily__save:active {
+  background-color: #d07c1d;
+}

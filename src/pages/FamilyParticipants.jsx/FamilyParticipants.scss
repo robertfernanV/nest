@@ -1,0 +1,75 @@
+.familyParticipants__title {
+    display: flex;
+    justify-content: center;
+    font-family:'Happy_Monkey';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+.familyParticipants__img {
+    width: 95.77px;
+    height: 100px;
+}
+
+.familyParticipants__imgSelected {
+    width: 140px;
+    height: 140px;
+}
+
+.familyParticipants__activity {
+    margin-left: 1rem;
+}
+
+.familyParticipants__iconAction {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.familyParticipants__card {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+    font-family:'Happy_Monkey';
+    color: #A4A70F;
+}
+
+
+.familyParticipants__age  {
+    margin: 0;
+    padding: 0%;
+    font-size: 14px;
+    font-family:'Happy_Monkey';
+    color: #7c7c7c;
+}
+
+
+.familyParticipants__cardItems {
+    margin-top: 12px;
+}
+
+.babyCard__count {
+    position: absolute;
+    font-family:'Happy_Monkey';
+    margin-left: 1.2rem;
+    border-radius: 100%;
+    background-color: #DB4B4B;
+    padding: 0px 3px 0px 3px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.babyCard__countSelected {
+    position: absolute;
+    font-family:'Happy_Monkey';
+    margin-left: 2.2rem;
+    margin-top: 1.5rem;
+    border-radius: 100%;
+    background-color: #DB4B4B;
+    padding: 0px 4px 0px 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
