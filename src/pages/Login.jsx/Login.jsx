@@ -102,7 +102,9 @@ const Login = () => {
                 }}
               />
               <ButtonBase
+                href="/familyList"
                 sx={{
+                  fontFamily: 'Inter',
                   borderRadius: "50px",
                   bgcolor: "#FB9825",
                   color: "white",

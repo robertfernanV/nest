@@ -1,11 +1,19 @@
 import "./FamilyItem.scss";
 import FamilyPlaceholder from "../../assets/images/familyPlaceholder.png";
 import AddIcon from "@mui/icons-material/Add";
+import { Link } from "react-router-dom";
 
 const FamilyItem = ({ family }) => {
   const { id, name, handleClick } = family;
   return (
-    <div className="familyItem" onClick={handleClick}>
+    <Link
+      style={{
+        textDecoration: "none",
+        color: "black",
+      }}
+      className="familyItem"
+      to={'/familyParticipants'}
+    >
       {id !== "0" ? (
         <img
           className="familyItem__img"
@@ -18,7 +26,7 @@ const FamilyItem = ({ family }) => {
         </div>
       )}
       <h3 className="familyItem__name">{name}</h3>
-    </div>
+    </Link>
   );
 };
 

@@ -3,6 +3,7 @@ import "./BabyDetails.scss";
 import { FernandezFamilyData } from "../../data";
 import BabyCard from "../../components/BabyCard/BabyCard";
 import { Box, Modal, Typography } from "@mui/material";
+import NavBar from "../../components/NavBar/NavBar";
 import ContentModalfeedingBottle from "../../components/BabyCard/ContentModalfeedingBottle";
 import ContentModalNote from "../../components/BabyCard/ContentModalNote";
 import ContentModalSnap from "../../components/BabyCard/ContentModalSnap";
@@ -10,7 +11,7 @@ import ContentModalEvacuation from "../../components/BabyCard/ContentModalEvacua
 import ContentModalNewSkill from "../../components/BabyCard/ContentModalNewSkill";
 
 function BabyDetails() {
-  const [babySelectd, setBabySelected] = useState({
+  const [babySelected, setBabySelected] = useState({
     id: 3,
     familyId: 12345,
   });
@@ -48,11 +49,36 @@ function BabyDetails() {
     paddingRight: 2,
   };
 
+  const styleModalImage = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    border: "1px solid #FB9825",
+    boxShadow: 24,
+    paddingBottom: 2,
+    paddingTop: 2,
+    paddingLeft: 2,
+    paddingRight: 2,
+  };
+
+  const [openImagePreview, setOpenImagePreview] = useState(false);
+  const handleOpenImagePreview = () => {
+    console.log('Abriendo imagne');
+    setOpenImagePreview(true);
+  };
+  const handleCloseImagePreview = () => {
+    setOpenImagePreview(false);
+  };
+
   return (
     <>
+      <NavBar menuTitle={"FMLIA. XXX XXX XXX"} />
+
       {FernandezFamilyData?.map((member) => {
-        return member.id === babySelectd.id &&
-          member.familyId === babySelectd.familyId ? (
+        return member.id == babySelected.id &&
+          member.familyId == babySelected.familyId ? (
           <>
             <BabyCard
               familyId={member.familyId}
@@ -251,7 +277,7 @@ function BabyDetails() {
         id={"note"}
       >
         <svg
-          className="babyDetails__action"
+          className="babyDetails__action pointer-events-none"
           width="30"
           height="30"
           viewBox="0 0 22 25"
@@ -325,6 +351,7 @@ function BabyDetails() {
         </svg>
         <Box
           sx={{
+            pointerEvents: 'none',
             border: "1px solid #ECEFF1",
             width: "100%",
             borderRadius: "5px",
@@ -335,13 +362,13 @@ function BabyDetails() {
         >
           <p className="babyDetails__actionText">Alan con sus padres!</p>
           <p className="babyDetails_dateAction">4:10pm</p>
-          <div className="babyDetails__srcContent">
+          <button className="babyDetails__srcContent" onClick={handleOpenImagePreview}>
             <img
               className="babyDetails__srcNote"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZBZgpadvnLQBPqEzSM5yQ32yOUqH5tGtEFKpGIiqQ8ReSGPQHn-N8XvxAjHoZ9lBFu_g&usqp=CAU"
               alt=""
             />
-          </div>
+          </button>
         </Box>
       </Box>
 
@@ -350,11 +377,11 @@ function BabyDetails() {
           display: "flex",
           marginY: "5px",
         }}
-        onClick={(e) => handleOpen(e.target.id)}
         id={"feedingBottle"}
+        onClick={(e) => handleOpen(e.target.id)}
       >
         <svg
-          className="babyDetails__action"
+          className="babyDetails__action "
           width="30"
           height="30"
           viewBox="0 0 25 25"
@@ -387,6 +414,7 @@ function BabyDetails() {
         </svg>
         <Box
           sx={{
+            pointerEvents: 'none',
             border: "1px solid #ECEFF1",
             width: "100%",
             borderRadius: "5px",
@@ -401,12 +429,12 @@ function BabyDetails() {
       </Box>
 
       <Box
+        id={"snap"}
         sx={{
           display: "flex",
           marginY: "5px",
         }}
         onClick={(e) => handleOpen(e.target.id)}
-        id={"snap"}
       >
         <svg
           className="babyDetails__action"
@@ -467,6 +495,7 @@ function BabyDetails() {
 
         <Box
           sx={{
+            pointerEvents: 'none',
             border: "1px solid #ECEFF1",
             width: "100%",
             borderRadius: "5px",
@@ -480,6 +509,25 @@ function BabyDetails() {
         </Box>
       </Box>
       <hr className="babyDetails__separador" />
+
+
+
+
+      {/* MODAL IMAGE PREVIEW */}
+      <Modal
+          open={openImagePreview}
+          onClose={handleCloseImagePreview}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={styleModalImage}>
+            <img
+              className="contentModal__imageFull"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZBZgpadvnLQBPqEzSM5yQ32yOUqH5tGtEFKpGIiqQ8ReSGPQHn-N8XvxAjHoZ9lBFu_g&usqp=CAU"
+              alt=""
+            />
+          </Box>
+        </Modal>
     </>
   );
 }

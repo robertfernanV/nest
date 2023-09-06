@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import Login from "./pages/Login.jsx/Login.jsx";
+import App from './App';
+import Login from "./pages/Login.jsx/Login.jsx";
 import "./index.scss";
 import NavBar from "./components/NavBar/NavBar.jsx";
 // import FamilyItem from "./components/FamilyItem/FamilyItem";
@@ -18,36 +19,13 @@ import SelectBaby from "./pages/SelectBaby/SelectBaby";
 import EditBaby from "./pages/EditBaby/EditBaby";
 import ConfigurationMenu from "./pages/ConfigurationMenu/ConfigurationMenu";
 
-const families = [
-  {
-    id: "sadsadsada",
-    name: "Fernández",
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: "sadsadsada",
-    name: "López",
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: "sadsadsada",
-    name: "Rivas",
-  },
-  {
-    id: "sadsadsada",
-    name: "González",
-  },
-  {
-    id: "0",
-    name: "Nueva Familia",
-  },
-];
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     {/* <Login /> */}
-    <NavBar menuTitle={"FLIA. FERNÁNDEZ"} />
+    {/* <NavBar menuTitle={"FLIA. FERNÁNDEZ"} /> */}
     {/* <FamilyList families={families} /> */}
     {/* <FamilyParticipants /> */}
     {/* <BabyDetails /> */}
@@ -60,6 +38,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <EditFamily/> */}
     {/* <SelectBaby/> */}
     {/* <EditBaby/> */}
-    <ConfigurationMenu />
+    {/* <ConfigurationMenu /> */}
   </React.StrictMode>
 );

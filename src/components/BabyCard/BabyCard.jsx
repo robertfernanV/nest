@@ -9,7 +9,7 @@ const simpleSummaryData = [
     meal: [],
     evacuation: [],
     bathroom: [],
-    snap: ["1:25pm", '5:00pm'],
+    snap: ["1:25pm", "5:00pm"],
     walk: [],
     newSkill: [],
     medication: ["3:35pm"],
@@ -37,20 +37,16 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
   return (
     <>
       {simpleSummaryData?.map((card) => {
-        if (
-          card.memberId === Id &&
-          card.familyCode === familyId &&
-          new Date(card.date).getDay() == new Date().getDay()
-        ) {
+        if (card.memberId === Id && card.familyCode === familyId) {
           return (
             <>
               <Card
                 sx={{
                   display: "flex",
                   marginX: "0.5rem",
-                  marginY: '1rem',
+                  marginY: "1rem",
                   borderRadius: "12px",
-                  boxShadow: 0
+                  boxShadow: 0,
                 }}
               >
                 <Box
@@ -61,6 +57,16 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                   }}
                 >
                   <img className="familyParticipants__img" src={image} alt="" />
+                  <img
+                    width={"60px"}
+                    style={{
+                      position: 'absolute',
+                      left: '90px',
+                      top: '155px',
+                    }}
+                    src="https://images.emojiterra.com/openmoji/v14.0/512px/1f60a.png"
+                    alt=""
+                  />
                 </Box>
                 <div>
                   <p className="familyParticipants__card">{memberName}</p>
@@ -70,7 +76,15 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                     container
                     columns={{ xs: 5 }}
                   >
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
                         opacity={
                           card.feedingBottle.length == 0 ? "20%" : "100%"
@@ -110,13 +124,23 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           </clipPath>
                         </defs>
                       </svg>
-                      <p className="babyCard__count">{card.feedingBottle.length > 0 ? card.feedingBottle.length : null}</p>
+                      <p className="babyCard__count">
+                        {card.feedingBottle.length > 0
+                          ? card.feedingBottle.length
+                          : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.meal.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.meal.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -132,13 +156,22 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           fill="#B2C1C0"
                         />
                       </svg>
-                      <p className="babyCard__count">{card.meal.length > 0 ? card.meal.length : null}</p>
+                      <p className="babyCard__count">
+                        {card.meal.length > 0 ? card.meal.length : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.evacuation.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.evacuation.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -268,13 +301,23 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           </clipPath>
                         </defs>
                       </svg>
-                      <p className="babyCard__count">{card.evacuation.length > 0 ? card.evacuation.length : null}</p>
+                      <p className="babyCard__count">
+                        {card.evacuation.length > 0
+                          ? card.evacuation.length
+                          : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.bathroom.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.bathroom.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -384,14 +427,21 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           </radialGradient>
                         </defs>
                       </svg>
-                      <p className="babyCard__count">{card.bathroom.length > 0 ? card.bathroom.length : null}</p>
-
+                      <p className="babyCard__count">
+                        {card.bathroom.length > 0 ? card.bathroom.length : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.snap.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.snap.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -456,14 +506,21 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           </clipPath>
                         </defs>
                       </svg>
-                      <p className="babyCard__count">{card.snap.length > 0 ? card.snap.length : null}</p>
-
+                      <p className="babyCard__count">
+                        {card.snap.length > 0 ? card.snap.length : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.walk.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.walk.length == 0 ? "20%" : "100%"}
                         width="26"
                         height="25"
                         viewBox="0 0 26 25"
@@ -487,14 +544,21 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           </clipPath>
                         </defs>
                       </svg>
-                      <p className="babyCard__count">{card.walk.length > 0 ? card.walk.length : null}</p>
-
+                      <p className="babyCard__count">
+                        {card.walk.length > 0 ? card.walk.length : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.newSkill.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.newSkill.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -570,14 +634,21 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           fill="#FED2E1"
                         />
                       </svg>
-                      <p className="babyCard__count">{card.newSkill.length > 0 ? card.newSkill.length : null}</p>
-
+                      <p className="babyCard__count">
+                        {card.newSkill.length > 0 ? card.newSkill.length : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.medication.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.medication.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -649,14 +720,23 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           </clipPath>
                         </defs>
                       </svg>
-                      <p className="babyCard__count">{card.medication.length > 0 ? card.medication.length : null}</p>
-
+                      <p className="babyCard__count">
+                        {card.medication.length > 0
+                          ? card.medication.length
+                          : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.symptom.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.symptom.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -704,14 +784,21 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           fill="#EF3030"
                         />
                       </svg>
-                      <p className="babyCard__count">{card.symptom.length > 0 ? card.symptom.length : null}</p>
-
+                      <p className="babyCard__count">
+                        {card.symptom.length > 0 ? card.symptom.length : null}
+                      </p>
                     </Grid>
-                    <Grid sx={{ marginY: "auto", paddingX: "7px", display: 'flex', paddingY: '4px' }} xs={1}>
+                    <Grid
+                      sx={{
+                        marginY: "auto",
+                        paddingX: "7px",
+                        display: "flex",
+                        paddingY: "4px",
+                      }}
+                      xs={1}
+                    >
                       <svg
-                      opacity={
-                        card.note.length == 0 ? "20%" : "100%"
-                      }
+                        opacity={card.note.length == 0 ? "20%" : "100%"}
                         width="25"
                         height="25"
                         viewBox="0 0 25 25"
@@ -795,8 +882,9 @@ function BabyCard({ familyId, Id, memberName, image, age }) {
                           </clipPath>
                         </defs>
                       </svg>
-                      <p className="babyCard__count">{card.note.length > 0 ? card.note.length : null}</p>
-
+                      <p className="babyCard__count">
+                        {card.note.length > 0 ? card.note.length : null}
+                      </p>
                     </Grid>
                   </Grid>
                 </div>

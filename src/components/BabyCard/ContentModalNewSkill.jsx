@@ -224,7 +224,7 @@ function ContentModalNewSkill() {
             </Typography>
           </Box>
         </Box>
-        <button className="contentModal__btnAceptar">Aceptar</button>
+        {/* <button className="contentModal__btnAceptar">Aceptar</button> */}
       </>
     </>
   );
