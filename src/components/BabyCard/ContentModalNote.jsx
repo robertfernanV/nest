@@ -215,7 +215,7 @@ function ContentModalNote() {
             />
           </Box>
         </Modal>
-        <button className="contentModal__btnAceptar">Aceptar</button>
+        {/* <button className="contentModal__btnAceptar">Aceptar</button> */}
       </>
     </>
   );

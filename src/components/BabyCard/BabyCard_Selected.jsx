@@ -1,4 +1,5 @@
 import { Grid, Box, Card } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const simpleSummaryData = [
   {
@@ -16,9 +17,10 @@ const simpleSummaryData = [
     symptom: [],
     note: [
       {
-        comment: 'Alan con sus padres!',
-        srcImage: 'https://scontent.fccs4-2.fna.fbcdn.net/v/t39.30808-6/294821769_10158873036633603_5242987218657091267_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=mD8nwsq7q-cAX8Ixhs8&_nc_ht=scontent.fccs4-2.fna&oh=00_AfBQm211DdUQT-HwkgcrecJte0SF7Rwt78ceH6gO7WuGig&oe=64D430E7'
-      }
+        comment: "Alan con sus padres!",
+        srcImage:
+          "https://scontent.fccs4-2.fna.fbcdn.net/v/t39.30808-6/294821769_10158873036633603_5242987218657091267_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=mD8nwsq7q-cAX8Ixhs8&_nc_ht=scontent.fccs4-2.fna&oh=00_AfBQm211DdUQT-HwkgcrecJte0SF7Rwt78ceH6gO7WuGig&oe=64D430E7",
+      },
     ],
   },
 
@@ -44,7 +46,7 @@ function BabyCard_Selected({ familyId, Id, memberName, image, age }) {
       {simpleSummaryData?.map((card) => {
         if (
           card.memberId === Id &&
-          card.familyCode === familyId 
+          card.familyCode === familyId
           /* && new Date(card.date).getDay() == new Date().getDay() */
         ) {
           return (
@@ -64,11 +66,13 @@ function BabyCard_Selected({ familyId, Id, memberName, image, age }) {
                     padding: "24px",
                   }}
                 >
-                  <img
-                    className="familyParticipants__imgSelected"
-                    src={image}
-                    alt=""
-                  />
+                  <Link to={'/babyDetails'}>
+                    <img
+                      className="familyParticipants__imgSelected"
+                      src={image}
+                      alt=""
+                    />
+                  </Link>
                   <Box
                     sx={{
                       marginX: "auto",

@@ -6,10 +6,15 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import "./ConfigurationMenu.scss";
 
 const ConfigurationMenu = () => {
+
+  const handleBack = () => {
+    history.back();
+  }
+
   return (
     <>
       <Box marginBottom={"4rem"}>
-        <button className="newFamily__previousBtn">
+        <button onClick={handleBack} className="newFamily__previousBtn">
           <svg
             width="23"
             height="24"
