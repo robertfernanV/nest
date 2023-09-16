@@ -18,11 +18,14 @@ import EditFamily from "./pages/EditFamily/EditFamily";
 import SelectBaby from "./pages/SelectBaby/SelectBaby";
 import EditBaby from "./pages/EditBaby/EditBaby";
 import ConfigurationMenu from "./pages/ConfigurationMenu/ConfigurationMenu";
+import { store } from "./store/store.js";
+import { Provider } from "react-redux";
 
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
     {/* <Login /> */}
     {/* <NavBar menuTitle={"FLIA. FERNÁNDEZ"} /> */}
@@ -39,5 +42,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <SelectBaby/> */}
     {/* <EditBaby/> */}
     {/* <ConfigurationMenu /> */}
+    </Provider>
   </React.StrictMode>
 );
