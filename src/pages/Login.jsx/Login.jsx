@@ -3,15 +3,47 @@ import Sheet from "react-modal-sheet";
 import logoHome from "../../assets/logohome.png";
 import ButtonBase from "@mui/material/ButtonBase";
 import TextField from "@mui/material/TextField";
+import { auth } from "../../firebase/firebaseConfig";
+import { setLoading, setError, setUser  } from  "../../store/slices/authSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { fetchUserById, fetchUsers } from  "../../store/slices/userSlice"
+import { Navigate } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ email: "", password: "" }); //{email:"",password:""
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.data);
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
+  const handleLogin = async () => {
+
+    dispatch(setLoading(true));
+    try {
+      const response = await signInWithEmailAndPassword(auth,formData.email, formData.password);
+      dispatch(setUser(response.user));
+      // dispatch(fetchUsers());
+      dispatch(fetchUserById(response.user.uid));
+    } catch (error) {
+      dispatch(setError(error.message));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const clearForm = () => {
+    setFormData({ email: "", password: "" });
+  };
   return (
     <>
+    { user && user.families && <Navigate to="/familyList" />}
       <div className="container">
         <img src={logoHome} alt="logo" className="logo" />
         <p className="logo__title">NEST</p>
@@ -48,6 +80,7 @@ const Login = () => {
             <section>
               <TextField
                 label="Correo"
+                name="email"
                 fullWidth
                 sx={{
                   marginBottom: "35px",
@@ -72,11 +105,14 @@ const Login = () => {
                     color: "#FB9825 !important",
                   },
                 }}
+                value={formData.email}
+                onChange={handleInputChange}
               />
               <TextField
                 label="Contraseña"
                 fullWidth
                 type="password"
+                name="password"
                 sx={{
                   marginBottom: "35px",
                   "& fieldset": {
@@ -100,9 +136,10 @@ const Login = () => {
                     color: "#FB9825 !important",
                   },
                 }}
+                value={formData.password}
+                onChange={handleInputChange}
               />
               <ButtonBase
-                href="/familyList"
                 sx={{
                   fontFamily: 'Inter',
                   borderRadius: "50px",
@@ -112,7 +149,8 @@ const Login = () => {
                   height: "40px",
                   fontWeight: "bold",
                 }}
-                fullWidth
+                
+                onClick={handleLogin}
               >
                 Entrar
               </ButtonBase>
@@ -131,7 +169,7 @@ const Login = () => {
                   borderColor: "#15e577",
                   border: "1px solid",
                 }}
-                fullWidth
+                
               >
                 Registrarse
               </ButtonBase>
@@ -145,7 +183,7 @@ const Login = () => {
                   fontWeight: "bold",
                   marginBottom: "15px",
                 }}
-                fullWidth
+                
               >
                 Login con Google
               </ButtonBase>
@@ -159,7 +197,7 @@ const Login = () => {
                   fontWeight: "bold",
                   marginBottom: "50px",
                 }}
-                fullWidth
+                
               >
                 Login con Facebook
               </ButtonBase>
