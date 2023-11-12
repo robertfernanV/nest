@@ -3,11 +3,11 @@ import Sheet from "react-modal-sheet";
 import logoHome from "../../assets/logohome.png";
 import ButtonBase from "@mui/material/ButtonBase";
 import TextField from "@mui/material/TextField";
-import { auth } from "../../firebase/firebaseConfig";
-import { setLoading, setError, setUser  } from  "../../store/slices/authSlice"
+import Firebase from "../../firebase/firebaseConfig";
+import { setLoading, setError, setUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { fetchUserById, fetchUsers } from  "../../store/slices/userSlice"
+import { fetchUserById } from "../../store/slices/userSlice";
 import { Navigate } from "react-router-dom";
 import "./Login.scss";
 
@@ -20,10 +20,14 @@ const Login = () => {
     setIsOpen(!isOpen);
   };
   const handleLogin = async () => {
-
     dispatch(setLoading(true));
+    const auth = await Firebase.getFirebaseAuth();
     try {
-      const response = await signInWithEmailAndPassword(auth,formData.email, formData.password);
+      const response = await signInWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
       dispatch(setUser(response.user));
       // dispatch(fetchUsers());
       dispatch(fetchUserById(response.user.uid));
@@ -38,12 +42,12 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const clearForm = () => {
-    setFormData({ email: "", password: "" });
-  };
+  // const clearForm = () => {
+  //   setFormData({ email: "", password: "" });
+  // };
   return (
     <>
-    { user && user.families && <Navigate to="/familyList" />}
+      {user && user.families && <Navigate to="/familyList" />}
       <div className="container">
         <img src={logoHome} alt="logo" className="logo" />
         <p className="logo__title">NEST</p>
@@ -141,7 +145,7 @@ const Login = () => {
               />
               <ButtonBase
                 sx={{
-                  fontFamily: 'Inter',
+                  fontFamily: "Inter",
                   borderRadius: "50px",
                   bgcolor: "#FB9825",
                   color: "white",
@@ -149,7 +153,6 @@ const Login = () => {
                   height: "40px",
                   fontWeight: "bold",
                 }}
-                
                 onClick={handleLogin}
               >
                 Entrar
@@ -169,7 +172,6 @@ const Login = () => {
                   borderColor: "#15e577",
                   border: "1px solid",
                 }}
-                
               >
                 Registrarse
               </ButtonBase>
@@ -183,7 +185,6 @@ const Login = () => {
                   fontWeight: "bold",
                   marginBottom: "15px",
                 }}
-                
               >
                 Login con Google
               </ButtonBase>
@@ -197,7 +198,6 @@ const Login = () => {
                   fontWeight: "bold",
                   marginBottom: "50px",
                 }}
-                
               >
                 Login con Facebook
               </ButtonBase>

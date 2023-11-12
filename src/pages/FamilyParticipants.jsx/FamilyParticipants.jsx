@@ -1,20 +1,42 @@
-import "./FamilyParticipants.scss";
-// import BabyCard from "../../components/BabyCard/BabyCard";
-import NavBar from "../../components/NavBar/NavBar";
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import BabyCard_Selected from "../../components/BabyCard/BabyCard_Selected";
-import {FernandezFamilyData} from '../../data.js'
+import { getChildren } from "../../store/slices/childrenSlice";
+import "./FamilyParticipants.scss";
+import { useEffect, useState } from "react";
+// import { FernandezFamilyData } from "../../data.js";
 
 function FamilyParticipants() {
-  // SIMPLE DATA PARA ITERAR INTEGRANTES DE UN GRUPO DE FAMILIA.
-  
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const [childrens, setChildrens] = useState([]);
+  const data = useSelector((state) => state.children.data);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getChildren(id));
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    setChildrens(data);
+  }, [data]);
+
+  useEffect(() => {
+    console.log({ childrens });
+  }, [childrens]);
+
+  window.scrollTo(0, 0);
   return (
     <>
-    <NavBar menuTitle={"FMLIA. XXX XXX XXX"} />
-      {FernandezFamilyData?.map((member) => {
-        return member.baby === true ? (
-          <BabyCard_Selected familyId={member.familyId} Id={member.id} age={member.age} image={member.image} memberName={member.name} key={member.id} />
-        ) : null;
-      })}
+      {childrens.length > 0 &&
+        childrens.map((children, index) => (
+          <BabyCard_Selected
+            key={index}
+            activity={children}
+            mt={index === 0 ? 4 : 2}
+          />
+        ))}
     </>
   );
 }

@@ -4,7 +4,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 
 const FamilyItem = ({ family }) => {
-  const { id, name, handleClick } = family;
+  const { id, name } = family;
+  console.log({ id });
   return (
     <Link
       style={{
@@ -12,7 +13,7 @@ const FamilyItem = ({ family }) => {
         color: "black",
       }}
       className="familyItem"
-      to={'/familyParticipants'}
+      to={id !== "0" ? `/familyParticipants/${id}` : "/newFamily"}
     >
       {id !== "0" ? (
         <img

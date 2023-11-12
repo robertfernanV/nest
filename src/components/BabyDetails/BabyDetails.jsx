@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./BabyDetails.scss";
 import { Link } from "react-router-dom";
 import { FernandezFamilyData } from "../../data";
@@ -16,305 +16,6 @@ import ArrowBackIosNew from "@mui/icons-material/ArrowBackIosNew";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import LocalSeeIcon from "@mui/icons-material/LocalSee";
 import AddIcon from "@mui/icons-material/Add";
-
-const BabyFoto = ({ handleOpenImagePreview, handleOpen }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        marginY: "5px",
-      }}
-      onClick={(e) => handleOpen(e.target.id)}
-      id={"note"}
-    >
-      <div style={{ zIndex: "-10" }}>
-        <svg
-          className="babyDetails__action pointer-events-none"
-          width="30"
-          height="30"
-          viewBox="0 0 22 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2.02381 2.08331C0.90606 2.08331 0 3.02081 0 4.16665V12.5V16.6666V22.9166C0 24.0625 0.90606 25 2.02381 25H16.1905C17.3086 25 18.2143 24.0625 18.2143 22.9166V16.6666V12.5V8.33331V4.16665C18.2143 3.02081 17.3086 2.08331 16.1905 2.08331H12.1429H2.02381Z"
-            fill="#BDC3C7"
-          />
-          <path
-            d="M3.03571 0C2.47683 0 2.0238 0.416667 2.0238 1.04167V4.16667C2.0238 4.6875 2.47683 5.20833 3.03571 5.20833C3.59458 5.20833 4.04761 4.6875 4.04761 4.16667V1.04167C4.04761 0.416667 3.59458 0 3.03571 0ZM7.08333 0C6.52445 0 6.07142 0.416667 6.07142 1.04167V4.16667C6.07142 4.6875 6.52445 5.20833 7.08333 5.20833C7.6419 5.20833 8.09523 4.6875 8.09523 4.16667V1.04167C8.09523 0.416667 7.6419 0 7.08333 0ZM11.1309 0C10.5724 0 10.119 0.416667 10.119 1.04167V4.16667C10.119 4.6875 10.5724 5.20833 11.1309 5.20833C11.6895 5.20833 12.1429 4.6875 12.1429 4.16667V1.04167C12.1429 0.416667 11.6895 0 11.1309 0ZM15.1786 0C14.62 0 14.1667 0.416667 14.1667 1.04167V4.16667C14.1667 4.6875 14.62 5.20833 15.1786 5.20833C15.7371 5.20833 16.1905 4.6875 16.1905 4.16667V1.04167C16.1905 0.416667 15.7371 0 15.1786 0Z"
-            fill="#95A5A6"
-          />
-          <path
-            d="M3.03571 15.625H15.1786V16.6667H3.03571V15.625Z"
-            fill="#95A5A6"
-          />
-          <path
-            d="M3.03571 12.5H15.1786V13.5417H3.03571V12.5Z"
-            fill="#95A5A6"
-          />
-          <path
-            d="M3.03571 9.375H15.1786V10.4167H3.03571V9.375Z"
-            fill="#95A5A6"
-          />
-          <path
-            d="M3.03571 18.75H7.08332V19.7917H3.03571V18.75Z"
-            fill="#95A5A6"
-          />
-          <path
-            d="M2.0238 4.16669C2.0238 4.68752 2.47683 5.20835 3.03571 5.20835C3.59458 5.20835 4.04761 4.68752 4.04761 4.16669H2.0238ZM6.07142 4.16669C6.07142 4.68752 6.52445 5.20835 7.08333 5.20835C7.6419 5.20835 8.09523 4.68752 8.09523 4.16669H6.07142ZM10.119 4.16669C10.119 4.68752 10.5724 5.20835 11.1309 5.20835C11.6895 5.20835 12.1429 4.68752 12.1429 4.16669H10.119ZM14.1667 4.16669C14.1667 4.68752 14.62 5.20835 15.1786 5.20835C15.7371 5.20835 16.1905 4.68752 16.1905 4.16669H14.1667Z"
-            fill="#7F8C8D"
-          />
-          <path
-            d="M0 21.875V22.9167C0 24.0625 0.90606 25 2.02381 25H16.1905C17.3086 25 18.2143 24.0625 18.2143 22.9167V21.875C18.2143 23.0208 17.3086 23.9583 16.1905 23.9583H2.02381C0.90606 23.9583 0 23.0208 0 21.875Z"
-            fill="#95A5A6"
-          />
-          <path
-            d="M16.3502 7.25641L8.26476 15.5797L7.76388 16.0953L7.04836 16.8319V19.7781H9.91047L10.626 19.0416L11.1269 18.526L19.2123 10.2027L16.3502 7.25641Z"
-            fill="#ECF0F1"
-          />
-          <path
-            d="M17.7813 8.72955L7.04839 19.7781H9.9105L10.626 19.0416L11.1269 18.526L19.2124 10.2027L17.7813 8.72955Z"
-            fill="#BDC3C7"
-          />
-          <path
-            d="M15.6347 7.99298L18.4968 10.9393L10.626 19.0416L7.7639 16.0953L15.6347 7.99298Z"
-            fill="#E67E22"
-          />
-          <path
-            d="M19.9279 6.51984C19.1372 5.70592 17.8529 5.70961 17.0658 6.51984L16.3502 7.25641L19.2124 10.2027L19.9279 9.46613C20.715 8.6559 20.7185 7.33375 19.9279 6.51984Z"
-            fill="#7F8C8D"
-          />
-          <path
-            d="M7.04413 17.7113L7.0484 19.7781L9.05619 19.7825L8.05016 18.7469L7.04413 17.7113Z"
-            fill="#34495E"
-          />
-          <path
-            d="M8.05017 18.7469L7.04841 19.7782L9.0562 19.7826L8.05017 18.7469Z"
-            fill="#2C3E50"
-          />
-          <path
-            d="M19.9279 6.51984C19.1372 5.70592 17.8529 5.70961 17.0658 6.51984L16.3502 7.25641L17.7813 8.72956L19.9279 6.51984Z"
-            fill="#95A5A6"
-          />
-          <path
-            d="M17.0658 9.46613L18.4969 10.9393L10.626 19.0416L9.19499 17.5684L17.0658 9.46613Z"
-            fill="#D35400"
-          />
-        </svg>
-      </div>
-
-      <Box
-        sx={{
-          pointerEvents: "none",
-          border: "1px solid #ECEFF1",
-          width: "100%",
-          borderRadius: "5px",
-          fontFamily: "Inder",
-          fontSize: "1rem",
-          marginX: "1rem",
-        }}
-      >
-        <p className="babyDetails__actionText">Alan con sus padres!</p>
-        <p className="babyDetails_dateAction">4:10pm</p>
-        <button
-          className="babyDetails__srcContent"
-          onClick={handleOpenImagePreview}
-        >
-          <img
-            className="babyDetails__srcNote"
-            src="https://www.familyeducation.com/sites/default/files/2023-03/6%20Traits%20Babies%20Inherit%20From%20Their%20Father_Feature.jpg"
-            alt=""
-          />
-        </button>
-      </Box>
-    </Box>
-  );
-};
-
-const BabyActivity = ({ handleOpen }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        marginY: "5px",
-      }}
-      id={"feedingBottle"}
-      onClick={(e) => handleOpen(e.target.id)}
-    >
-      <div style={{ zIndex: "-10" }}>
-        <svg
-          className="babyDetails__action "
-          width="30"
-          height="30"
-          viewBox="0 0 25 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g clipPath="url(#clip0_222_741)">
-            <path
-              d="M22.2619 5.0153C22.2619 4.03335 22.7456 4.52432 23.2225 4.03335C24.1778 3.05141 24.6581 1.5778 23.7042 0.595851C22.7496 -0.386093 21.3201 0.111823 20.3662 1.09377C19.8886 1.58474 20.3676 2.08335 19.4137 2.08335H15.5975L16.0744 2.56738C16.0744 2.56738 18.4598 6.00071 18.9368 5.50974C18.4598 6.00141 21.791 8.45418 21.791 8.45418L22.2619 8.94377V5.0153Z"
-              fill="#FFAC33"
-            />
-            <path
-              d="M20.8446 10.4167L17.506 6.97916L14.1667 3.54236C13.6897 4.03333 11.3043 3.54236 10.3504 4.5243L9.8735 5.01528L8.44199 6.48889L1.08949 14.0569C0.0357617 15.1417 0.0357617 16.9014 1.08949 17.9854L6.8135 23.8778C7.86723 24.9625 9.576 24.9625 10.6297 23.8778L17.3083 17.0035L19.4137 14.8361L19.8907 14.3451C20.8446 13.3625 20.3676 10.9076 20.8446 10.4167Z"
-              fill="#CCD6DD"
-            />
-            <path
-              d="M22.0373 10.1708C21.3782 10.8493 20.7879 11.3403 20.1295 10.6618L13.9286 4.27846C13.2695 3.59999 13.7471 2.99235 14.4055 2.31388C15.0646 1.6361 16.1318 1.6361 16.7902 2.31388L22.0373 7.71526C22.6964 8.39374 22.6964 9.49304 22.0373 10.1708Z"
-              fill="#55ACEE"
-            />
-            <path
-              d="M8.76984 22.2222C8.59714 22.2222 8.42444 22.1541 8.29289 22.0187C8.02913 21.7472 8.02913 21.3083 8.29289 21.0367L16.3881 12.7034C16.6519 12.4319 17.0783 12.4319 17.342 12.7034C17.6058 12.9749 17.6058 13.4145 17.342 13.6861L9.24678 22.0194C9.11524 22.1541 8.94254 22.2222 8.76984 22.2222ZM6.07143 19.4444C5.89873 19.4444 5.72603 19.3763 5.59448 19.2409C5.33071 18.9694 5.33071 18.5305 5.59448 18.259L13.6897 9.92564C13.9535 9.65411 14.3798 9.65411 14.6436 9.92564C14.9074 10.1972 14.9074 10.6361 14.6436 10.9076L6.54837 19.2416C6.41682 19.3763 6.24412 19.4444 6.07143 19.4444ZM3.37301 16.6666C3.20032 16.6666 3.02762 16.5986 2.89607 16.4631C2.6323 16.1916 2.6323 15.7527 2.89607 15.4812L10.9913 7.14786C11.2551 6.87633 11.6814 6.87633 11.9452 7.14786C12.209 7.41939 12.209 7.85828 11.9452 8.1298L3.84996 16.4638C3.71841 16.5986 3.54571 16.6666 3.37301 16.6666Z"
-              fill="#99AAB5"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_222_741">
-              <rect width="24.2857" height="25" fill="white" />
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
-
-      <Box
-        sx={{
-          pointerEvents: "none",
-          border: "1px solid #ECEFF1",
-          width: "100%",
-          borderRadius: "5px",
-          fontFamily: "Inder",
-          fontSize: "1rem",
-          marginX: "1rem",
-        }}
-      >
-        <p className="babyDetails__actionText">Biberón</p>
-        <p className="babyDetails_dateAction">11:35am</p>
-      </Box>
-    </Box>
-  );
-};
-
-const CurrentActivity = ({ handleOpen }) => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-      }}
-      id={"feedingBottle"}
-      onClick={(e) => handleOpen(e.target.id)}
-    >
-      <GpsFixedIcon
-        style={{
-          marginLeft: "1rem",
-          color: "orange",
-          marginBottom: "auto",
-          marginTop: "auto",
-          zIndex: "-10",
-        }}
-      />
-      <div
-        style={{
-          display: "flex",
-          fontFamily: "Inder",
-          marginLeft: "1.5rem",
-          color: "orange",
-        }}
-      >
-        <p>
-          10:22am - <span>Jugando</span>{" "}
-        </p>
-      </div>
-    </Box>
-  );
-};
-
-const BabySleep = ({ handleOpen }) => {
-  return (
-    <Box
-      id={"snap"}
-      sx={{
-        display: "flex",
-        marginY: "5px",
-      }}
-      onClick={(e) => handleOpen(e.target.id)}
-    >
-      <svg
-        className="babyDetails__action"
-        style={{
-          zIndex: "-10",
-        }}
-        width="30"
-        height="30"
-        viewBox="0 0 25 25"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M11.1961 18.0722C10.976 17.4765 10.3025 17.1855 9.69533 17.4238L6.51163 18.6699L8.4431 11.5917C8.5114 11.3437 8.50002 11.0878 8.41274 10.8496C8.17937 10.2187 7.46598 9.91011 6.82089 10.164L1.53685 12.2304C1.24466 12.3437 1.01129 12.5625 0.876581 12.8417C0.738076 13.1308 0.721 13.4531 0.829148 13.748C1.04924 14.3457 1.72658 14.6386 2.33752 14.4003L5.41687 13.1953L3.46832 20.2343C3.39812 20.4882 3.40761 20.75 3.49678 20.9921C3.67703 21.4804 4.14187 21.7773 4.64276 21.7773C4.79834 21.7773 4.95772 21.748 5.1133 21.6875L10.4941 19.582C11.1012 19.3437 11.4162 18.666 11.1961 18.0722Z"
-          fill="url(#paint0_linear_222_737)"
-        />
-        <path
-          d="M17.5692 12.0743C17.463 11.4317 16.8426 11.004 16.188 11.1172L12.7519 11.7188L16.0514 5.00591C16.1671 4.76958 16.2051 4.50981 16.1633 4.25395C16.0514 3.57231 15.393 3.11919 14.6967 3.24028L8.99333 4.24223C8.67838 4.29692 8.40137 4.46684 8.21164 4.7227C8.01621 4.98638 7.93842 5.30473 7.98965 5.62309C8.0959 6.26958 8.72012 6.69927 9.37849 6.58403L12.7026 6.002L9.39177 12.6719C9.27224 12.9122 9.2324 13.1778 9.27603 13.4395C9.36331 13.9668 9.77313 14.3594 10.2759 14.461C10.4315 14.4922 10.5966 14.4961 10.7654 14.4668L16.5731 13.4493C17.2277 13.334 17.6755 12.7168 17.5692 12.0743Z"
-          fill="url(#paint1_linear_222_737)"
-        />
-        <path
-          d="M23.5154 14.543C23.4812 14.127 23.1075 13.8184 22.6825 13.8555L20.455 14.0488L22.9158 9.94531C23.0031 9.80078 23.0411 9.63672 23.0278 9.47265C22.9917 9.03125 22.5952 8.70508 22.1455 8.74414L18.4514 9.0625C18.2484 9.08008 18.0625 9.17383 17.9278 9.32617C17.7893 9.48242 17.7229 9.68359 17.7399 9.88867C17.7741 10.3066 18.1498 10.6172 18.5767 10.5801L20.7301 10.3926L18.2636 14.4668C18.1744 14.6133 18.1346 14.7812 18.1498 14.9492C18.1782 15.291 18.4192 15.5645 18.7341 15.6582C18.8328 15.6875 18.9371 15.6992 19.0453 15.6895L22.8077 15.3633C23.2327 15.3281 23.5495 14.959 23.5154 14.543Z"
-          fill="url(#paint2_linear_222_737)"
-        />
-        <defs>
-          <linearGradient
-            id="paint0_linear_222_737"
-            x1="6.01291"
-            y1="5.51999"
-            x2="6.01291"
-            y2="21.0804"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#4FC3F7" />
-            <stop offset="1" stopColor="#1E88E5" />
-          </linearGradient>
-          <linearGradient
-            id="paint1_linear_222_737"
-            x1="12.7797"
-            y1="5.52009"
-            x2="12.7797"
-            y2="21.0805"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#4FC3F7" />
-            <stop offset="1" stopColor="#1E88E5" />
-          </linearGradient>
-          <linearGradient
-            id="paint2_linear_222_737"
-            x1="20.6273"
-            y1="5.52004"
-            x2="20.6273"
-            y2="21.0805"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#4FC3F7" />
-            <stop offset="1" stopColor="#1E88E5" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      <Box
-        sx={{
-          pointerEvents: "none",
-          border: "1px solid #ECEFF1",
-          width: "100%",
-          borderRadius: "5px",
-          fontFamily: "Inder",
-          fontSize: "1rem",
-          marginX: "1rem",
-        }}
-      >
-        <p className="babyDetails__actionText">Siesta</p>
-        <p className="babyDetails_dateAction">2:10pm - 4:15pm</p>
-      </Box>
-    </Box>
-  );
-};
 
 function BabyDetails() {
   window.scrollTo(0, 0);
@@ -396,8 +97,8 @@ function BabyDetails() {
   };
 
   return (
-    <React.Fragment>
-      <NavBar menuTitle={"FMLIA. Fernández"} backgroundProp={"#FFEEDA"} />
+    <>
+      <NavBar menuTitle={"FMLIA. XXX XXX XXX"} backgroundProp={"#FFEEDA"} />
 
       {FernandezFamilyData?.map((member) => {
         return member.id == babySelected.id &&
@@ -422,81 +123,335 @@ function BabyDetails() {
           marginTop: "1.5rem",
         }}
       />
-      <div
+
+      {/* yesterday */}
+      <button
         style={{
-          zIndex: -2,
+          marginTop: "1rem",
+          marginLeft: "3rem",
+          borderRadius: "100%",
+          paddingX: "1px",
+          background: "orange",
+          border: "none",
         }}
       >
+        <ArrowBackIosNew
+          style={{
+            margin: "auto",
+            width: "20px",
+            color: "white",
+          }}
+        />
+      </button>
+
+      <div
+        style={{
+          textAlign: "center",
+          position: "relative",
+          bottom: "2rem",
+        }}
+      >
+        <p
+          style={{
+            fontSize: "14px",
+            fontFamily: "Inter",
+            fontWeight: "bold",
+            margin: 0,
+          }}
+        >
+          Hoy
+        </p>
         <button
           style={{
-            marginTop: "1rem",
-            marginLeft: "3rem",
-            borderRadius: "100%",
-            paddingX: "1px",
-            background: "orange",
+            fontSize: "12px",
+            textDecoration: "underline",
+            background: "transparent",
             border: "none",
+            color: "#1E88E5",
+            fontFamily: "Inter",
           }}
         >
-          <ArrowBackIosNew
-            style={{
-              margin: "auto",
-              width: "20px",
-              color: "white",
-            }}
-          />
+          Cambiar fecha
         </button>
-
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: "-30px",
-            zIndex: -1,
-          }}
-        >
-          <p
-            style={{
-              fontSize: "14px",
-              fontFamily: "Inter",
-              fontWeight: "bold",
-              margin: 0,
-            }}
-          >
-            Hoy
-          </p>
-          <button
-            style={{
-              fontSize: "12px",
-              textDecoration: "underline",
-              background: "transparent",
-              border: "none",
-              color: "#1E88E5",
-              fontFamily: "Inter",
-            }}
-          >
-            Cambiar fecha
-          </button>
-        </div>
       </div>
-      {/* yesterday */}
 
       {/* SE ITERA LAS ACCIONES DEL BEBÉ */}
+      <Box
+        sx={{
+          display: "flex",
+          marginY: "5px",
+        }}
+        onClick={(e) => handleOpen(e.target.id)}
+        id={"note"}
+      >
+        <svg
+          className="babyDetails__action pointer-events-none"
+          width="30"
+          height="30"
+          viewBox="0 0 22 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2.02381 2.08331C0.90606 2.08331 0 3.02081 0 4.16665V12.5V16.6666V22.9166C0 24.0625 0.90606 25 2.02381 25H16.1905C17.3086 25 18.2143 24.0625 18.2143 22.9166V16.6666V12.5V8.33331V4.16665C18.2143 3.02081 17.3086 2.08331 16.1905 2.08331H12.1429H2.02381Z"
+            fill="#BDC3C7"
+          />
+          <path
+            d="M3.03571 0C2.47683 0 2.0238 0.416667 2.0238 1.04167V4.16667C2.0238 4.6875 2.47683 5.20833 3.03571 5.20833C3.59458 5.20833 4.04761 4.6875 4.04761 4.16667V1.04167C4.04761 0.416667 3.59458 0 3.03571 0ZM7.08333 0C6.52445 0 6.07142 0.416667 6.07142 1.04167V4.16667C6.07142 4.6875 6.52445 5.20833 7.08333 5.20833C7.6419 5.20833 8.09523 4.6875 8.09523 4.16667V1.04167C8.09523 0.416667 7.6419 0 7.08333 0ZM11.1309 0C10.5724 0 10.119 0.416667 10.119 1.04167V4.16667C10.119 4.6875 10.5724 5.20833 11.1309 5.20833C11.6895 5.20833 12.1429 4.6875 12.1429 4.16667V1.04167C12.1429 0.416667 11.6895 0 11.1309 0ZM15.1786 0C14.62 0 14.1667 0.416667 14.1667 1.04167V4.16667C14.1667 4.6875 14.62 5.20833 15.1786 5.20833C15.7371 5.20833 16.1905 4.6875 16.1905 4.16667V1.04167C16.1905 0.416667 15.7371 0 15.1786 0Z"
+            fill="#95A5A6"
+          />
+          <path
+            d="M3.03571 15.625H15.1786V16.6667H3.03571V15.625Z"
+            fill="#95A5A6"
+          />
+          <path
+            d="M3.03571 12.5H15.1786V13.5417H3.03571V12.5Z"
+            fill="#95A5A6"
+          />
+          <path
+            d="M3.03571 9.375H15.1786V10.4167H3.03571V9.375Z"
+            fill="#95A5A6"
+          />
+          <path
+            d="M3.03571 18.75H7.08332V19.7917H3.03571V18.75Z"
+            fill="#95A5A6"
+          />
+          <path
+            d="M2.0238 4.16669C2.0238 4.68752 2.47683 5.20835 3.03571 5.20835C3.59458 5.20835 4.04761 4.68752 4.04761 4.16669H2.0238ZM6.07142 4.16669C6.07142 4.68752 6.52445 5.20835 7.08333 5.20835C7.6419 5.20835 8.09523 4.68752 8.09523 4.16669H6.07142ZM10.119 4.16669C10.119 4.68752 10.5724 5.20835 11.1309 5.20835C11.6895 5.20835 12.1429 4.68752 12.1429 4.16669H10.119ZM14.1667 4.16669C14.1667 4.68752 14.62 5.20835 15.1786 5.20835C15.7371 5.20835 16.1905 4.68752 16.1905 4.16669H14.1667Z"
+            fill="#7F8C8D"
+          />
+          <path
+            d="M0 21.875V22.9167C0 24.0625 0.90606 25 2.02381 25H16.1905C17.3086 25 18.2143 24.0625 18.2143 22.9167V21.875C18.2143 23.0208 17.3086 23.9583 16.1905 23.9583H2.02381C0.90606 23.9583 0 23.0208 0 21.875Z"
+            fill="#95A5A6"
+          />
+          <path
+            d="M16.3502 7.25641L8.26476 15.5797L7.76388 16.0953L7.04836 16.8319V19.7781H9.91047L10.626 19.0416L11.1269 18.526L19.2123 10.2027L16.3502 7.25641Z"
+            fill="#ECF0F1"
+          />
+          <path
+            d="M17.7813 8.72955L7.04839 19.7781H9.9105L10.626 19.0416L11.1269 18.526L19.2124 10.2027L17.7813 8.72955Z"
+            fill="#BDC3C7"
+          />
+          <path
+            d="M15.6347 7.99298L18.4968 10.9393L10.626 19.0416L7.7639 16.0953L15.6347 7.99298Z"
+            fill="#E67E22"
+          />
+          <path
+            d="M19.9279 6.51984C19.1372 5.70592 17.8529 5.70961 17.0658 6.51984L16.3502 7.25641L19.2124 10.2027L19.9279 9.46613C20.715 8.6559 20.7185 7.33375 19.9279 6.51984Z"
+            fill="#7F8C8D"
+          />
+          <path
+            d="M7.04413 17.7113L7.0484 19.7781L9.05619 19.7825L8.05016 18.7469L7.04413 17.7113Z"
+            fill="#34495E"
+          />
+          <path
+            d="M8.05017 18.7469L7.04841 19.7782L9.0562 19.7826L8.05017 18.7469Z"
+            fill="#2C3E50"
+          />
+          <path
+            d="M19.9279 6.51984C19.1372 5.70592 17.8529 5.70961 17.0658 6.51984L16.3502 7.25641L17.7813 8.72956L19.9279 6.51984Z"
+            fill="#95A5A6"
+          />
+          <path
+            d="M17.0658 9.46613L18.4969 10.9393L10.626 19.0416L9.19499 17.5684L17.0658 9.46613Z"
+            fill="#D35400"
+          />
+        </svg>
+        <Box
+          sx={{
+            pointerEvents: "none",
+            border: "1px solid #ECEFF1",
+            width: "100%",
+            borderRadius: "5px",
+            fontFamily: "Inder",
+            fontSize: "1rem",
+            marginX: "1rem",
+          }}
+        >
+          <p className="babyDetails__actionText">Alan con sus padres!</p>
+          <p className="babyDetails_dateAction">4:10pm</p>
+          <button
+            className="babyDetails__srcContent"
+            onClick={handleOpenImagePreview}
+          >
+            <img
+              className="babyDetails__srcNote"
+              src="https://www.familyeducation.com/sites/default/files/2023-03/6%20Traits%20Babies%20Inherit%20From%20Their%20Father_Feature.jpg"
+              alt=""
+            />
+          </button>
+        </Box>
+      </Box>
 
-      <BabyFoto />
-      <BabyActivity />
-
-      <BabyFoto />
-      <BabyActivity />
-      <BabyFoto />
-      <BabyActivity />
-      <BabyFoto />
-      <BabyActivity />
+      <Box
+        sx={{
+          display: "flex",
+          marginY: "5px",
+        }}
+        id={"feedingBottle"}
+        onClick={(e) => handleOpen(e.target.id)}
+      >
+        <svg
+          className="babyDetails__action "
+          width="30"
+          height="30"
+          viewBox="0 0 25 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clipPath="url(#clip0_222_741)">
+            <path
+              d="M22.2619 5.0153C22.2619 4.03335 22.7456 4.52432 23.2225 4.03335C24.1778 3.05141 24.6581 1.5778 23.7042 0.595851C22.7496 -0.386093 21.3201 0.111823 20.3662 1.09377C19.8886 1.58474 20.3676 2.08335 19.4137 2.08335H15.5975L16.0744 2.56738C16.0744 2.56738 18.4598 6.00071 18.9368 5.50974C18.4598 6.00141 21.791 8.45418 21.791 8.45418L22.2619 8.94377V5.0153Z"
+              fill="#FFAC33"
+            />
+            <path
+              d="M20.8446 10.4167L17.506 6.97916L14.1667 3.54236C13.6897 4.03333 11.3043 3.54236 10.3504 4.5243L9.8735 5.01528L8.44199 6.48889L1.08949 14.0569C0.0357617 15.1417 0.0357617 16.9014 1.08949 17.9854L6.8135 23.8778C7.86723 24.9625 9.576 24.9625 10.6297 23.8778L17.3083 17.0035L19.4137 14.8361L19.8907 14.3451C20.8446 13.3625 20.3676 10.9076 20.8446 10.4167Z"
+              fill="#CCD6DD"
+            />
+            <path
+              d="M22.0373 10.1708C21.3782 10.8493 20.7879 11.3403 20.1295 10.6618L13.9286 4.27846C13.2695 3.59999 13.7471 2.99235 14.4055 2.31388C15.0646 1.6361 16.1318 1.6361 16.7902 2.31388L22.0373 7.71526C22.6964 8.39374 22.6964 9.49304 22.0373 10.1708Z"
+              fill="#55ACEE"
+            />
+            <path
+              d="M8.76984 22.2222C8.59714 22.2222 8.42444 22.1541 8.29289 22.0187C8.02913 21.7472 8.02913 21.3083 8.29289 21.0367L16.3881 12.7034C16.6519 12.4319 17.0783 12.4319 17.342 12.7034C17.6058 12.9749 17.6058 13.4145 17.342 13.6861L9.24678 22.0194C9.11524 22.1541 8.94254 22.2222 8.76984 22.2222ZM6.07143 19.4444C5.89873 19.4444 5.72603 19.3763 5.59448 19.2409C5.33071 18.9694 5.33071 18.5305 5.59448 18.259L13.6897 9.92564C13.9535 9.65411 14.3798 9.65411 14.6436 9.92564C14.9074 10.1972 14.9074 10.6361 14.6436 10.9076L6.54837 19.2416C6.41682 19.3763 6.24412 19.4444 6.07143 19.4444ZM3.37301 16.6666C3.20032 16.6666 3.02762 16.5986 2.89607 16.4631C2.6323 16.1916 2.6323 15.7527 2.89607 15.4812L10.9913 7.14786C11.2551 6.87633 11.6814 6.87633 11.9452 7.14786C12.209 7.41939 12.209 7.85828 11.9452 8.1298L3.84996 16.4638C3.71841 16.5986 3.54571 16.6666 3.37301 16.6666Z"
+              fill="#99AAB5"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_222_741">
+              <rect width="24.2857" height="25" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        <Box
+          sx={{
+            pointerEvents: "none",
+            border: "1px solid #ECEFF1",
+            width: "100%",
+            borderRadius: "5px",
+            fontFamily: "Inder",
+            fontSize: "1rem",
+            marginX: "1rem",
+          }}
+        >
+          <p className="babyDetails__actionText">Biberón</p>
+          <p className="babyDetails_dateAction">11:35am</p>
+        </Box>
+      </Box>
 
       {/* ACTIVITY (NO ACTION) */}
-      <CurrentActivity />
-      <CurrentActivity />
-      <CurrentActivity />
+      <Box
+        sx={{
+          display: "flex",
+        }}
+        id={"feedingBottle"}
+        onClick={(e) => handleOpen(e.target.id)}
+      >
+        <GpsFixedIcon
+          style={{
+            marginLeft: "1rem",
+            color: "orange",
+            marginBottom: "auto",
+            marginTop: "auto",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            fontFamily: "Inder",
+            marginLeft: "1.5rem",
+            color: "orange",
+          }}
+        >
+          <p>
+            10:22am - <span>Jugando</span>{" "}
+          </p>
+        </div>
+      </Box>
 
-      <BabySleep />
+      <Box
+        id={"snap"}
+        sx={{
+          display: "flex",
+          marginY: "5px",
+        }}
+        onClick={(e) => handleOpen(e.target.id)}
+      >
+        <svg
+          className="babyDetails__action"
+          style={{
+            zIndex: "-10",
+          }}
+          width="30"
+          height="30"
+          viewBox="0 0 25 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.1961 18.0722C10.976 17.4765 10.3025 17.1855 9.69533 17.4238L6.51163 18.6699L8.4431 11.5917C8.5114 11.3437 8.50002 11.0878 8.41274 10.8496C8.17937 10.2187 7.46598 9.91011 6.82089 10.164L1.53685 12.2304C1.24466 12.3437 1.01129 12.5625 0.876581 12.8417C0.738076 13.1308 0.721 13.4531 0.829148 13.748C1.04924 14.3457 1.72658 14.6386 2.33752 14.4003L5.41687 13.1953L3.46832 20.2343C3.39812 20.4882 3.40761 20.75 3.49678 20.9921C3.67703 21.4804 4.14187 21.7773 4.64276 21.7773C4.79834 21.7773 4.95772 21.748 5.1133 21.6875L10.4941 19.582C11.1012 19.3437 11.4162 18.666 11.1961 18.0722Z"
+            fill="url(#paint0_linear_222_737)"
+          />
+          <path
+            d="M17.5692 12.0743C17.463 11.4317 16.8426 11.004 16.188 11.1172L12.7519 11.7188L16.0514 5.00591C16.1671 4.76958 16.2051 4.50981 16.1633 4.25395C16.0514 3.57231 15.393 3.11919 14.6967 3.24028L8.99333 4.24223C8.67838 4.29692 8.40137 4.46684 8.21164 4.7227C8.01621 4.98638 7.93842 5.30473 7.98965 5.62309C8.0959 6.26958 8.72012 6.69927 9.37849 6.58403L12.7026 6.002L9.39177 12.6719C9.27224 12.9122 9.2324 13.1778 9.27603 13.4395C9.36331 13.9668 9.77313 14.3594 10.2759 14.461C10.4315 14.4922 10.5966 14.4961 10.7654 14.4668L16.5731 13.4493C17.2277 13.334 17.6755 12.7168 17.5692 12.0743Z"
+            fill="url(#paint1_linear_222_737)"
+          />
+          <path
+            d="M23.5154 14.543C23.4812 14.127 23.1075 13.8184 22.6825 13.8555L20.455 14.0488L22.9158 9.94531C23.0031 9.80078 23.0411 9.63672 23.0278 9.47265C22.9917 9.03125 22.5952 8.70508 22.1455 8.74414L18.4514 9.0625C18.2484 9.08008 18.0625 9.17383 17.9278 9.32617C17.7893 9.48242 17.7229 9.68359 17.7399 9.88867C17.7741 10.3066 18.1498 10.6172 18.5767 10.5801L20.7301 10.3926L18.2636 14.4668C18.1744 14.6133 18.1346 14.7812 18.1498 14.9492C18.1782 15.291 18.4192 15.5645 18.7341 15.6582C18.8328 15.6875 18.9371 15.6992 19.0453 15.6895L22.8077 15.3633C23.2327 15.3281 23.5495 14.959 23.5154 14.543Z"
+            fill="url(#paint2_linear_222_737)"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_222_737"
+              x1="6.01291"
+              y1="5.51999"
+              x2="6.01291"
+              y2="21.0804"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#4FC3F7" />
+              <stop offset="1" stopColor="#1E88E5" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_222_737"
+              x1="12.7797"
+              y1="5.52009"
+              x2="12.7797"
+              y2="21.0805"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#4FC3F7" />
+              <stop offset="1" stopColor="#1E88E5" />
+            </linearGradient>
+            <linearGradient
+              id="paint2_linear_222_737"
+              x1="20.6273"
+              y1="5.52004"
+              x2="20.6273"
+              y2="21.0805"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#4FC3F7" />
+              <stop offset="1" stopColor="#1E88E5" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <Box
+          sx={{
+            pointerEvents: "none",
+            border: "1px solid #ECEFF1",
+            width: "100%",
+            borderRadius: "5px",
+            fontFamily: "Inder",
+            fontSize: "1rem",
+            marginX: "1rem",
+          }}
+        >
+          <p className="babyDetails__actionText">Siesta</p>
+          <p className="babyDetails_dateAction">2:10pm - 4:15pm</p>
+        </Box>
+      </Box>
 
       <div
         style={{
@@ -595,6 +550,9 @@ function BabyDetails() {
               className="babyDetails__btnCloseModal"
             >
               <svg
+                style={{
+                  zIndex: "-10",
+                }}
                 width="18"
                 height="20"
                 viewBox="0 0 18 20"
@@ -1456,7 +1414,7 @@ function BabyDetails() {
       </Modal>
 
       <Menu />
-    </React.Fragment>
+    </>
   );
 }
 

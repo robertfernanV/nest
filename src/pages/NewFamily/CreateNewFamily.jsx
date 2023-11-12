@@ -1,12 +1,33 @@
 import Box from "@mui/material/Box";
 import { TextField, Typography, Grid } from "@mui/material";
 import "./CreateNewFamily.scss";
+import { useNavigate } from "react-router-dom";
 
 function CreateNewFamily() {
+  window.scrollTo(0, 0);
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate("/newFamily");
+  };
+
+  const handleAddBaby = () => {
+    navigate('/addBaby')
+  }
+
+  const handleAddMember = () => {
+    navigate('/addMember')
+  }
+
+  const handleAddBabySister = () => {
+    navigate('/addBabySister')
+  }
+
   return (
     <>
       <Box>
-        <button className="newFamily__previousBtn">
+        <button onClick={handleBack} className="newFamily__previousBtn">
           <svg
             width="23"
             height="24"
@@ -218,19 +239,27 @@ function CreateNewFamily() {
           item
           xs={2}
         >
-          <svg
-            className="createNewFamily__newMember"
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+          onClick={handleAddBaby}
+            style={{
+              background: "none",
+              border: "none",
+            }}
           >
-            <path
-              d="M8.05114 20.4233V0.309658H13.1364V20.4233H8.05114ZM0.536932 12.9091V7.82386H20.6506V12.9091H0.536932Z"
-              fill="white"
-            />
-          </svg>
+            <svg
+              className="createNewFamily__newMember"
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.05114 20.4233V0.309658H13.1364V20.4233H8.05114ZM0.536932 12.9091V7.82386H20.6506V12.9091H0.536932Z"
+                fill="white"
+              />
+            </svg>
+          </button>
         </Grid>
       </Grid>
 
@@ -308,6 +337,13 @@ function CreateNewFamily() {
           item
           xs={2}
         >
+          <button
+          onClick={handleAddMember}
+            style={{
+              background: "none",
+              border: "none",
+            }}
+          >
           <svg
             className="createNewFamily__newMember"
             width="21"
@@ -321,6 +357,7 @@ function CreateNewFamily() {
               fill="white"
             />
           </svg>
+          </button>
         </Grid>
       </Grid>
 
@@ -409,6 +446,13 @@ function CreateNewFamily() {
           item
           xs={2}
         >
+          <button
+          onClick={handleAddBabySister}
+            style={{
+              background: "none",
+              border: "none",
+            }}
+          >
           <svg
             className="createNewFamily__newMember"
             width="21"
@@ -422,6 +466,7 @@ function CreateNewFamily() {
               fill="white"
             />
           </svg>
+          </button>
         </Grid>
       </Grid>
 
@@ -431,8 +476,10 @@ function CreateNewFamily() {
           justifyContent: "space-evenly",
         }}
       >
-        <button className="createNewFamily__saveCancelBtn ">Cancelar</button>
-        <button className="createNewFamily__saveCancelBtn createNewFamily__save">Guardar</button>
+        <button onClick={handleBack} className="createNewFamily__saveCancelBtn ">Cancelar</button>
+        <button className="createNewFamily__saveCancelBtn createNewFamily__save">
+          Guardar
+        </button>
       </Box>
     </>
   );

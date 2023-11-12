@@ -1,0 +1,25 @@
+.input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-input {
+    border: 2px solid #FB9825;
+    border-radius: 20px 0 0 20px;
+    padding: 10px;
+    width: 200px; /* Ajusta según tus necesidades */
+  }
+  
+  .custom-button {
+    background-color: #FB9825;
+    color: white;
+    border: none;
+    border-radius: 0 60px 60px 0;
+    padding: 4px;
+    cursor: pointer;
+    margin-left: -2px; /* Ajusta según tus necesidades para alinear correctamente */
+  }
+  
+  .plus-sign {
+  font-size: 2em; /* Ajusta según tus necesidades para hacer el símbolo "+" más grande */
+}

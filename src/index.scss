@@ -1,29 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 @font-face {
-  font-family:'Happy_Monkey';
-  src: url('./assets/fonts/HappyMonkey-Regular.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family:'Inter';
-  src: url('./assets/fonts/Inter-Regular.ttf') format('truetype');
+  font-family: "Happy_Monkey";
+  src: url("./assets/fonts/HappyMonkey-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family:'Inder';
-  src: url('./assets/fonts/Inder-Regular.ttf') format('truetype');
+  font-family: "Indie Flower";
+  src: url("./assets/fonts/IndieFlower-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family:'Imprima';
-  src: url('./assets/fonts/Imprima-Regular.ttf') format('truetype');
+  font-family: "Imprima";
+  src: url("./assets/fonts/Imprima-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Inder";
+  src: url("./assets/fonts/Inder-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.indieFlowers {
+  font-family: "Indie Flower";
+}
+
+.inter {
+  font-family: "Inder";
+}
+
+.inder {
+  font-family: "Inder";
+}
+
+.imprima {
+  font-family: "Imprima";
+}
+
+.happyMonkey {
+  font-family: "Happy_Monkey";
 }
 
 body {

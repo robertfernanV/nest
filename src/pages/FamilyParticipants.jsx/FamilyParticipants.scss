@@ -16,6 +16,7 @@
 .familyParticipants__imgSelected {
     width: 140px;
     height: 140px;
+    object-fit: contain;
 }
 
 .familyParticipants__activity {
@@ -72,4 +73,9 @@
     font-size: 12px;
     font-weight: bold;
     color: white;
+}
+
+
+.inputFocusNone:focus {
+    outline: none;
 }
