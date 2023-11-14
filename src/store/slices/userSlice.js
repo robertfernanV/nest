@@ -94,6 +94,11 @@ const usersSlice = createSlice({
       ).selected = action.payload.selected;
       localStorage.setItem("user", JSON.stringify({ ...state }));
     },
+    clearState: () => ({
+      data: {},
+      loading: false,
+      error: null,
+    }),
   },
   extraReducers: (builder) => {
     // Manejo de la acción fetchUsers
@@ -130,5 +135,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { setFamilySelected } = usersSlice.actions;
+export const { setFamilySelected, clearState } = usersSlice.actions;
 export default usersSlice.reducer;

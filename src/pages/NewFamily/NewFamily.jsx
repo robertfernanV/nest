@@ -1,8 +1,9 @@
 import "./newFamily.scss";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
 import { useNavigate } from "react-router-dom";
 import CardContent from "@mui/material/CardContent";
-import { Modal, Typography } from "@mui/material";
+import { Button, Modal, Typography, TextField } from "@mui/material";
 import { useState } from "react";
 
 function NewFamily() {
@@ -14,12 +15,12 @@ function NewFamily() {
   const handleClose = () => setOpen(false);
 
   const handleBack = () => {
-    navigate("/familyList");
-  };
+    navigate('/familyList')
+  }
 
   const handleNewFamily = () => {
-    navigate("/createNewFamily");
-  };
+    navigate('/createNewFamily')
+  }
 
   const style = {
     position: "absolute",
@@ -167,23 +168,26 @@ function NewFamily() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Ingrese el código de la familia
           </Typography>
-          <input placeholder="4HD56K" className="NewFamily__inputUnirse" />
+          <input
+            placeholder="4HD56K"
+            className='NewFamily__inputUnirse'
+          />
           <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <button
-              onClick={handleClose}
-              className="createNewFamily__saveCancelBtn AddBaby__btnCancelar"
-            >
-              Cancelar
-            </button>
-            <button className="createNewFamily__saveCancelBtn createNewFamily__save">
-              Enviar Solicitud
-            </button>
-          </Box>
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <button
+          onClick={handleClose}
+          className="createNewFamily__saveCancelBtn AddBaby__btnCancelar"
+        >
+          Cancelar
+        </button>
+        <button className="createNewFamily__saveCancelBtn createNewFamily__save">
+          Enviar Solicitud
+        </button>
+      </Box>
         </Box>
       </Modal>
     </>

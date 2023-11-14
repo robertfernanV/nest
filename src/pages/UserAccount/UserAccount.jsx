@@ -1,13 +1,17 @@
 import Box from "@mui/material/Box";
+import UserAccountPlaceHolder from "../../assets/images/cuentaUsuario.jpeg";
+import "./userAccount.scss";
 
-function UserAccount() {
+const UserAccount = () => {
+  window.scrollTo(0, 0);
+
   const handleBack = () => {
     history.back();
-  }
+  };
 
   return (
     <>
-      <Box>
+      <Box marginTop={"2rem"}>
         <button onClick={handleBack} className="newFamily__previousBtn">
           <svg
             width="23"
@@ -23,9 +27,16 @@ function UserAccount() {
           </svg>
         </button>
         <h1 className="newFamily__title">Cuenta de Usuario</h1>
+
+        <img src={UserAccountPlaceHolder} className="imagen" />
+        <div className="image_wrapper">
+          <button className="createNewFamily__saveCancelBtn createNewFamily__save">
+            Aceptar
+          </button>
+        </div>
       </Box>
     </>
   );
-}
+};
 
 export default UserAccount;

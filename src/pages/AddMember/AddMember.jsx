@@ -17,9 +17,15 @@ import "./AddMember.scss";
 import { useState } from "react";
 
 function AddMember() {
+  window.scrollTo(0, 0);
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleBack = () => { 
+    history.back();
+  }
 
   const style = {
     position: "absolute",
@@ -35,7 +41,7 @@ function AddMember() {
   return (
     <>
       <Box>
-        <button className="newFamily__previousBtn">
+        <button onClick={handleBack} className="newFamily__previousBtn">
           <svg
             width="23"
             height="24"
@@ -192,6 +198,7 @@ function AddMember() {
             }}
           >
             <Button
+            onClick={handleBack}
               sx={{
                 color: "black",
                 background: "#FB9825",

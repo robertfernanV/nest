@@ -17,9 +17,15 @@ import "./AddBabysitter.scss";
 import { useState } from "react";
 
 function AddBabysitter() {
+  window.scrollTo(0, 0);
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleBack = () => {
+    history.back();
+  };
 
   const style = {
     position: "absolute",
@@ -35,7 +41,7 @@ function AddBabysitter() {
   return (
     <>
       <Box>
-        <button className="newFamily__previousBtn">
+        <button onClick={handleBack} className="newFamily__previousBtn">
           <svg
             width="23"
             height="24"
@@ -104,6 +110,7 @@ function AddBabysitter() {
           label="Correo"
           type="text"
           placeholder="correo@ejemplo.com"
+          autoComplete="false"
           sx={{
             width: "320px",
             marginBottom: "1rem",
@@ -153,6 +160,7 @@ function AddBabysitter() {
             }}
           >
             <Button
+              onClick={handleBack}
               sx={{
                 color: "black",
                 background: "#FB9825",

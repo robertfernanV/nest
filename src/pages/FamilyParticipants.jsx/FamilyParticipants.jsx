@@ -7,10 +7,16 @@ import { useEffect, useState } from "react";
 // import { FernandezFamilyData } from "../../data.js";
 
 function FamilyParticipants() {
-  const { id } = useParams();
+  let { id } = useParams();
   const dispatch = useDispatch();
   const [childrens, setChildrens] = useState([]);
   const data = useSelector((state) => state.children.data);
+
+  useEffect(() => {
+    if (id === undefined || id == !"HUgUsapxemMoYvi7g2VF") {
+      id = "HUgUsapxemMoYvi7g2VF";
+    }
+  }, []);
 
   useEffect(() => {
     if (id) {

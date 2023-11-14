@@ -12,11 +12,16 @@ import EditIcon from "@mui/icons-material/Edit";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import "./NavBar.scss";
+import { cleanState } from "../../store/slices/authSlice";
+import { clearState } from "../../store/slices/userSlice";
 
 import { Avatar, Box, Drawer, Typography, Switch, Grid } from "@mui/material";
+import Firebase from "../../firebase/firebaseConfig";
+import { useDispatch } from "react-redux";
 
 const NavBar = ({ menuTitle, backgroundProp }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleAddFamily = () => {
     navigate("/newFamily");
   };
@@ -303,10 +308,23 @@ const NavBar = ({ menuTitle, backgroundProp }) => {
               height: "50px",
             }}
           >
-            <Link
+            <div
               style={{ textDecoration: "none" }}
-              to={"/"}
               className="no-underline btnFamily__Drawer"
+              onClick={() => {
+                console.log("CLICKKKK");
+
+                Firebase.logout()
+                  .then(() => {
+                    console.log("JHERE2");
+                    localStorage.clear();
+                    localStorage.setItem("onboarding", true);
+                    dispatch(cleanState());
+                    dispatch(clearState());
+                    navigate("/login");
+                  })
+                  .catch(() => console.log("eeeeee"));
+              }}
             >
               <Typography
                 color={"white"}
@@ -316,7 +334,7 @@ const NavBar = ({ menuTitle, backgroundProp }) => {
               >
                 Cerrar Sesion
               </Typography>
-            </Link>
+            </div>
           </Box>
         </Box>
       </Drawer>

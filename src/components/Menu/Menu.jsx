@@ -10,11 +10,18 @@ import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import Face3OutlinedIcon from "@mui/icons-material/Face3Outlined";
 import "./Menu.scss";
+import { useNavigate } from "react-router-dom";
+import Firebase from "../../firebase/firebaseConfig";
+import { cleanState } from "../../store/slices/authSlice";
+import { clearState } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 import { Box, Drawer, Typography, Switch, Grid } from "@mui/material";
 
 const Menu = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [activateRoutes, setActivateRoutes] = useState({
     babyDetailRoute: "#00000040",
     taskListRoute: "#00000040",
@@ -255,10 +262,22 @@ const Menu = () => {
               height: "50px",
             }}
           >
-            <Link
+            <div
               style={{ textDecoration: "none" }}
-              to={"/"}
               className="no-underline btnFamily__Drawer"
+              onClick={() => {
+                console.log("aaaaa");
+                Firebase.logout()
+                  .then(() => {
+                    console.log("JHERE2");
+                    localStorage.clear();
+                    localStorage.setItem("onboarding", true);
+                    dispatch(cleanState());
+                    dispatch(clearState());
+                    navigate("/login");
+                  })
+                  .catch(() => console.log("eeeeee"));
+              }}
             >
               <Typography
                 color={"white"}
@@ -268,7 +287,7 @@ const Menu = () => {
               >
                 Cerrar Sesion
               </Typography>
-            </Link>
+            </div>
           </Box>
         </Box>
       </Drawer>

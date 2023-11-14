@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 // import * as FirebaseAuth from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -66,6 +66,11 @@ class Firebase {
   static async getFirebaseAuth() {
     const instance = await this.getInstance();
     return instance.auth;
+  }
+
+  static async logout() {
+    const instance = await this.getInstance();
+    await signOut(instance.auth);
   }
 }
 
