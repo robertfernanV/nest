@@ -42,6 +42,8 @@ import Onboarding_5 from "./pages/Onboarding/Onboarding_5";
 import Onboarding_finish from "./pages/Onboarding/Onboarding_finish";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
+import NuevaHoraExtra from "./pages/Calendar/NuevaHoraExtra";
+import NuevoEvento from "./pages/Calendar/NuevoEvento";
 
 const FirstRoute = () => {
   const [readyOnboarding] = useState(localStorage.getItem("onboarding"));
@@ -165,6 +167,8 @@ function App() {
           />
           <Route exact path="/sueldoYPago" element={<SueldoYPago />} />
           <Route exact path="/funciones" element={<Funciones />} />
+          <Route exact path="/newOvertime" element={<NuevaHoraExtra />} />
+          <Route exact path="/newEvent" element={<NuevoEvento />} />
 
           <Route
             exact
