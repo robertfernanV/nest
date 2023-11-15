@@ -222,7 +222,7 @@ const NavBar = ({ menuTitle, backgroundProp }) => {
               component={"div"}
               fontFamily={"Happy_Monkey"}
             >
-              Gestionar Familias
+              Menú de familias
             </Typography>
           </Box>
 

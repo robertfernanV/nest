@@ -20,8 +20,8 @@ const FamilyList = () => {
         ¡Selecciona una familia!
       </h2>
       <div className="familyList">
-        {families.map((family) => {
-          return <FamilyItem key={family.id} family={family} />;
+        {families.map((family, index) => {
+          return <FamilyItem key={family.id} family={family} index={index} />;
         })}
       </div>
     </>

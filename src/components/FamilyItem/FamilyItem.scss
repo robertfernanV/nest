@@ -5,11 +5,15 @@
     align-items: center;
     width: auto;
 
+    
     &__img{
         border-radius: 10px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        width: 150px;
-        height: 150px;
+        
+        width: 140px;
+        height: 140px;
+        object-fit: cover; 
+        max-width: 100%; /* Evita que la imagen sea más ancha que su contenedor */
+        max-height: 100%; /* Evita que la imagen sea más alta que su contenedor */
     }
     &__name{
         font-family:'Happy_Monkey';

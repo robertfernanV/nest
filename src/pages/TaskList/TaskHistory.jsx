@@ -355,7 +355,7 @@ export default function TaskHistory() {
               Filtrar Búsqueda
             </p>
           </center>
-          <div style={{ display: "flex", justifyContent: "end" }}>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <button
               style={{
                 border: "none",
@@ -767,7 +767,7 @@ export default function TaskHistory() {
             <button
               onClick={handleClose2}
               style={{
-                fontFamily: 'Inder',
+                fontFamily: "Inder",
                 borderRadius: "10px",
                 fontSize: "20px",
                 background: "#FB9825",

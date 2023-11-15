@@ -13,16 +13,16 @@ function CreateNewFamily() {
   };
 
   const handleAddBaby = () => {
-    navigate('/addBaby')
-  }
+    navigate("/addBaby");
+  };
 
   const handleAddMember = () => {
-    navigate('/addMember')
-  }
+    navigate("/addMember");
+  };
 
   const handleAddBabySister = () => {
-    navigate('/addBabySister')
-  }
+    navigate("/addBabySister");
+  };
 
   return (
     <>
@@ -141,7 +141,7 @@ function CreateNewFamily() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "end",
+          justifyContent: "flex-end",
         }}
       >
         <Box
@@ -240,7 +240,7 @@ function CreateNewFamily() {
           xs={2}
         >
           <button
-          onClick={handleAddBaby}
+            onClick={handleAddBaby}
             style={{
               background: "none",
               border: "none",
@@ -268,7 +268,7 @@ function CreateNewFamily() {
         sx={{
           display: "flex",
           marginTop: "1rem",
-          justifyContent: "end",
+          justifyContent: "flex-end",
         }}
       >
         <Box
@@ -338,25 +338,25 @@ function CreateNewFamily() {
           xs={2}
         >
           <button
-          onClick={handleAddMember}
+            onClick={handleAddMember}
             style={{
               background: "none",
               border: "none",
             }}
           >
-          <svg
-            className="createNewFamily__newMember"
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.05114 20.4233V0.309658H13.1364V20.4233H8.05114ZM0.536932 12.9091V7.82386H20.6506V12.9091H0.536932Z"
-              fill="white"
-            />
-          </svg>
+            <svg
+              className="createNewFamily__newMember"
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.05114 20.4233V0.309658H13.1364V20.4233H8.05114ZM0.536932 12.9091V7.82386H20.6506V12.9091H0.536932Z"
+                fill="white"
+              />
+            </svg>
           </button>
         </Grid>
       </Grid>
@@ -366,7 +366,7 @@ function CreateNewFamily() {
         sx={{
           display: "flex",
           marginTop: "1rem",
-          justifyContent: "end",
+          justifyContent: "flex-end",
         }}
       >
         <Box
@@ -447,25 +447,25 @@ function CreateNewFamily() {
           xs={2}
         >
           <button
-          onClick={handleAddBabySister}
+            onClick={handleAddBabySister}
             style={{
               background: "none",
               border: "none",
             }}
           >
-          <svg
-            className="createNewFamily__newMember"
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.05114 20.4233V0.309658H13.1364V20.4233H8.05114ZM0.536932 12.9091V7.82386H20.6506V12.9091H0.536932Z"
-              fill="white"
-            />
-          </svg>
+            <svg
+              className="createNewFamily__newMember"
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.05114 20.4233V0.309658H13.1364V20.4233H8.05114ZM0.536932 12.9091V7.82386H20.6506V12.9091H0.536932Z"
+                fill="white"
+              />
+            </svg>
           </button>
         </Grid>
       </Grid>
@@ -476,7 +476,12 @@ function CreateNewFamily() {
           justifyContent: "space-evenly",
         }}
       >
-        <button onClick={handleBack} className="createNewFamily__saveCancelBtn ">Cancelar</button>
+        <button
+          onClick={handleBack}
+          className="createNewFamily__saveCancelBtn "
+        >
+          Cancelar
+        </button>
         <button className="createNewFamily__saveCancelBtn createNewFamily__save">
           Guardar
         </button>

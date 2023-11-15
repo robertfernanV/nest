@@ -2,10 +2,11 @@ import "./FamilyItem.scss";
 import FamilyPlaceholder from "../../assets/images/familyPlaceholder.png";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
+import FamilyFernandez from "../../assets/images/fernandez.png";
 
-const FamilyItem = ({ family }) => {
+const FamilyItem = ({ family, index }) => {
   const { id, name } = family;
-  console.log({ id });
+  console.log({ id, index });
   return (
     <Link
       style={{
@@ -18,7 +19,9 @@ const FamilyItem = ({ family }) => {
       {id !== "0" ? (
         <img
           className="familyItem__img"
-          src={family?.image ?? FamilyPlaceholder}
+          src={
+            index === 0 ? FamilyFernandez : family?.image ?? FamilyPlaceholder
+          }
           alt={name}
         />
       ) : (

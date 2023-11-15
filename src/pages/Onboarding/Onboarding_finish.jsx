@@ -107,7 +107,7 @@ const Onboarding_finish = () => {
         </p>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "end" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <p
           style={{
             marginBottom: "2rem",

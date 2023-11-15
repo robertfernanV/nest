@@ -98,7 +98,11 @@ const Onboarding_2 = () => {
       </div>
 
       <div
-        style={{ display: "flex", justifyContent: "end", marginRight: "1rem" }}
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginRight: "1rem",
+        }}
       >
         <button
           onClick={handleOmitir}

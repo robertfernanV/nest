@@ -367,7 +367,7 @@ function FamilyGroup() {
           justifyContent: "space-between",
           marginLeft: "1rem",
           marginRight: "1rem",
-          marginBottom: "0.7rem",
+          margin: "0.7rem",
         }}
       >
         <section

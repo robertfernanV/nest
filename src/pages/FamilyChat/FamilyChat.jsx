@@ -99,7 +99,7 @@ const FamilyChat = () => {
         style={{
           display: "flex",
           alignItems: "end",
-          height: "70vh",
+          height: "74vh",
         }}
       >
         {/* MEESAGE #1 */}
@@ -150,7 +150,7 @@ const FamilyChat = () => {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "end",
+                  justifyContent: "flex-end",
                 }}
               >
                 <p
@@ -209,7 +209,7 @@ const FamilyChat = () => {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "end",
+                  justifyContent: "flex-end",
                 }}
               >
                 <p
@@ -321,70 +321,68 @@ const FamilyChat = () => {
         </div>
       </div>
 
-        <div
+      <div
+        style={{
+          background: "white",
+          position: "fixed",
+          width: "100%",
+          // bottom: "3.5rem",
+          display: "flex",
+          marginRight: "1rem",
+        }}
+      >
+        <button
           style={{
-            background: 'white',
-            position: 'fixed',
-            width: '100%',
-            bottom: '3.5rem',
-            display: "flex",
-            marginRight: "1rem",
+            background: "none",
+            border: "none",
           }}
         >
-          <button
+          <CollectionsIcon
             style={{
-              background: "none",
-              border: "none",
+              color: "orange",
             }}
-          >
-            <CollectionsIcon
-              style={{
-                color: "orange",
-              }}
-            />
-          </button>
-          <button
-            style={{
-              background: "none",
-              border: "none",
-            }}
-          >
-            <CameraAltIcon
-              style={{
-                color: "orange",
-              }}
-            />
-          </button>
-          <input
-          placeholder="mensaje"
-            style={{
-              width: "100%",
-              borderTopLeftRadius: "10px",
-              borderBottomLeftRadius: "10px",
-              border: "1px solid #8A8A8A",
-              borderRight: "none",
-              fontFamily: "Happy_Monkey",
-            }}
-            type="text"
           />
-          <button
+        </button>
+        <button
+          style={{
+            background: "none",
+            border: "none",
+          }}
+        >
+          <CameraAltIcon
             style={{
-              border: "1px solid #8A8A8A",
-              borderTopRightRadius: "10px",
-              borderBottomRightRadius: "10px",
-              borderLeft: "none",
-              background: "transparent",
+              color: "orange",
             }}
-          >
-            <SendIcon
-              style={{
-                color: "orange",
-              }}
-            />
-          </button>
-        </div>
-
-      <Menu />
+          />
+        </button>
+        <input
+          placeholder="mensaje"
+          style={{
+            width: "100%",
+            borderTopLeftRadius: "10px",
+            borderBottomLeftRadius: "10px",
+            border: "1px solid #8A8A8A",
+            borderRight: "none",
+            fontFamily: "Happy_Monkey",
+          }}
+          type="text"
+        />
+        <button
+          style={{
+            border: "1px solid #8A8A8A",
+            borderTopRightRadius: "10px",
+            borderBottomRightRadius: "10px",
+            borderLeft: "none",
+            background: "transparent",
+          }}
+        >
+          <SendIcon
+            style={{
+              color: "orange",
+            }}
+          />
+        </button>
+      </div>
     </>
   );
 };

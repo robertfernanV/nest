@@ -54,10 +54,9 @@ const TaskList = () => {
     navigate("/newExtraTask");
   };
 
-  const handleHistory  =() => {
+  const handleHistory = () => {
     navigate("/taskHistory");
-  }
-
+  };
 
   return (
     <>
@@ -72,11 +71,11 @@ const TaskList = () => {
       <div
         style={{
           display: "flex",
-          justifyContent: "end",
+          justifyContent: "flex-end",
         }}
       >
         <button
-        onClick={handleHistory}
+          onClick={handleHistory}
           style={{
             border: "none",
             background: "none",
@@ -1042,7 +1041,7 @@ const TaskList = () => {
           <div
             style={{
               display: "flex",
-              justifyContent: "end",
+              justifyContent: "flex-end",
               marginRight: "1rem",
               fontFamily: "Happy_Monkey",
               fontSize: "12px",
@@ -1165,8 +1164,8 @@ const TaskList = () => {
                 marginBottom: "1rem",
               }}
             >
-              Descripción: <br></br> Bañar y vestir a los niños para ir a visitar a la
-              abuela.
+              Descripción: <br></br> Bañar y vestir a los niños para ir a
+              visitar a la abuela.
             </p>
           </div>
 

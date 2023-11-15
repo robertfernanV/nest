@@ -94,7 +94,11 @@ const Funciones = () => {
       />
 
       <div
-        style={{ display: "flex", justifyContent: "end", marginRight: "3rem" }}
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginRight: "3rem",
+        }}
       >
         <button
           style={{
