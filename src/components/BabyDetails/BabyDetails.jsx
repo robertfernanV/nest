@@ -457,7 +457,7 @@ function BabyDetails() {
         style={{
           display: "flex",
           width: "100%",
-          justifyContent: "end",
+          justifyContent: "flex-end",
         }}
       >
         <div

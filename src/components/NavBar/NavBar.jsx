@@ -25,6 +25,7 @@ const NavBar = ({ menuTitle, backgroundProp }) => {
   const handleAddFamily = () => {
     navigate("/newFamily");
   };
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   return (
     <>
@@ -216,14 +217,16 @@ const NavBar = ({ menuTitle, backgroundProp }) => {
             paddingBottom={"2rem"}
             borderBottom={"2px solid #FFFFFF"}
           >
-            <Typography
-              sx={{ textDecoration: "underline" }}
-              color={"white"}
-              component={"div"}
-              fontFamily={"Happy_Monkey"}
-            >
-              Menú de familias
-            </Typography>
+            <Link style={{ textDecoration: "none" }} to={"/familyList"}>
+              <Typography
+                sx={{ textDecoration: "underline" }}
+                color={"white"}
+                component={"div"}
+                fontFamily={"Happy_Monkey"}
+              >
+                Menú de familias
+              </Typography>
+            </Link>
           </Box>
 
           {/* CUENTA DE USUARIO */}
