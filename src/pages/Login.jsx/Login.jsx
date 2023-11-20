@@ -8,7 +8,7 @@ import { setLoading, setError, setUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { fetchUserById } from "../../store/slices/userSlice";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
@@ -48,31 +48,34 @@ const Login = () => {
   return (
     <>
       {user && user.families && <Navigate to="/familyList" />}
-      <div className="container">
-        <img src={logoHome} alt="logo" className="logo" />
-        <p className="logo__title">NEST</p>
-        <p className="logo__slogan">Cuidamos con amor</p>
+      <div className="big_container">
+        <div className="container">
+          <img src={logoHome} alt="logo" className="logo" />
+          <p className="logo__title">NEST</p>
+          <p className="logo__slogan">Cuidado y Seguimiento del Bebé</p>
 
-        <div className="login">
-          <ButtonBase
-            sx={{
-              borderRadius: "50px",
-              bgcolor: "#FB9825",
-              color: "white",
-              width: "80vw",
-              height: "40px",
-              fontWeight: "bold",
-            }}
-            onClick={handleClick}
-          >
-            Login
-          </ButtonBase>
-          <p>
-            <span className="login__register">¿No estás registrado?</span>
-            <span className="login__link"> Registrarse</span>
-          </p>
+          <div className="login">
+            <ButtonBase
+              sx={{
+                borderRadius: "50px",
+                bgcolor: "#FB9825",
+                color: "white",
+                width: "85vw",
+                height: "40px",
+                fontWeight: "bold",
+              }}
+              onClick={handleClick}
+            >
+              Login
+            </ButtonBase>
+            <p>
+              <span className="login__register">¿No estás registrado?</span>
+              <span className="login__link"> Registrarse</span>
+            </p>
+          </div>
         </div>
       </div>
+
       <Sheet
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
@@ -82,12 +85,18 @@ const Login = () => {
           <Sheet.Header />
           <Sheet.Content>
             <section>
+              <p
+                className="bsTitle"
+              >
+                Ingrese sus datos
+              </p>
               <TextField
                 label="Correo"
                 name="email"
                 fullWidth
+                size="small"
                 sx={{
-                  marginBottom: "35px",
+                  marginBottom: "15px",
                   "& fieldset": {
                     borderRadius: "50px",
                   },
@@ -115,10 +124,11 @@ const Login = () => {
               <TextField
                 label="Contraseña"
                 fullWidth
+                size="small"
                 type="password"
                 name="password"
                 sx={{
-                  marginBottom: "35px",
+                  marginBottom: "15px",
                   "& fieldset": {
                     borderRadius: "50px",
                   },
@@ -159,22 +169,12 @@ const Login = () => {
               </ButtonBase>
             </section>
             <section>
-              <p className="formOptions">O</p>
-              <ButtonBase
-                sx={{
-                  borderRadius: "50px",
-                  bgcolor: "white",
-                  color: "#C4C74A",
-                  width: "95vw",
-                  height: "40px",
-                  fontWeight: "bold",
-                  marginBottom: "15px",
-                  borderColor: "#15e577",
-                  border: "1px solid",
-                }}
-              >
-                Registrarse
-              </ButtonBase>
+              <div className="link_container">
+                <Link className="link">
+                  Olvidé mi contraseña
+                </Link>
+              </div>
+              <p className="formOptions">o</p>
               <ButtonBase
                 sx={{
                   borderRadius: "50px",
@@ -186,7 +186,7 @@ const Login = () => {
                   marginBottom: "15px",
                 }}
               >
-                Login con Google
+                Continuar con Google
               </ButtonBase>
               <ButtonBase
                 sx={{
@@ -196,10 +196,25 @@ const Login = () => {
                   width: "95vw",
                   height: "40px",
                   fontWeight: "bold",
-                  marginBottom: "50px",
+                  marginBottom: "15px",
                 }}
               >
-                Login con Facebook
+                Continuar con Facebook
+              </ButtonBase>
+              <ButtonBase
+                sx={{
+                  borderRadius: "50px",
+                  bgcolor: "white",
+                  color: "#C4C74A",
+                  width: "95vw",
+                  height: "40px",
+                  fontWeight: "bold",
+                  marginBottom: "40px",
+                  borderColor: "#15e577",
+                  border: "1px solid",
+                }}
+              >
+                Continuar con Instagram
               </ButtonBase>
             </section>
           </Sheet.Content>

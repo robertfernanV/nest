@@ -12,9 +12,30 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family:'Josefin_Sans';
+    src: url('../../assets/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.big_container{
+    display: flex;
+    //background-color: rgba(255,255,255,0.5);
+    background-image: url('../../assets/images/bg/birds_bg.jpg');
+    //background-repeat: no-repeat;
+    //background-size:cover;
+    background-attachment: fixed;
+    background-position:-250px, 0px;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
 
 .container{
     display: flex;
+    background-color: rgba(0,0,0,0.2);
     flex-direction: column;
     align-items: center;
     height: 100vh;
@@ -26,18 +47,21 @@
 }
 
 .logo{
-    margin-top: 3vh;
+    margin-top: 12vh;
 
     &__title{
        font-family:'Indie_Flower';
        font-size: 40px;
+       color: white;
        margin-top: -30px;
        margin-bottom: 0;
     }
 
     &__slogan{
-        font-family:'Indie_Flower';
-        margin-top: -10px;
+        font-family:'Josefin_Sans';
+        font-size: 20px;
+        color: white;
+        margin-top: -3px;
     }
 }
 
@@ -47,10 +71,12 @@
     align-items: center;
     justify-content: center;
     width: 100vw;
-    margin-bottom: 35vh;
+    margin-bottom: 20vh;
     &__register{
         font-family:'Inter';
-        font-size: 13px;
+        font-weight: bold;
+        font-size: 16px;
+        color: white;
         margin-top: 10px;
         margin-bottom: 0;
 
@@ -58,11 +84,12 @@
 
     &__link{
         font-family:'Inter';
-        font-size: 13px;
+        font-weight: bold;
+        font-size: 16px;
         margin-top: 10px;
         margin-bottom: 0;
-        color: #3c3d05ad;
-        text-decoration: none;
+        color: #FB9825;
+        text-decoration: underline;
         font-style: bold;
     }
 }
@@ -74,15 +101,37 @@
     margin-bottom: 20px;
 }
 
+.bsTitle{
+    font-family: 'Inter';
+    font-size: 16px;
+    color: #FB9825;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.link_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.link{
+    font-family: 'Inter';
+    font-size: 16px;
+    color: #797979;
+    text-align: center;
+}
 
 
 // .react-modal-sheet-backdrop {
 //   /* custom styles */
 // }
-// .react-modal-sheet-container {
-//   /* custom styles */
-// //   background:rgba(155, 197, 66) !important
-// }
+.react-modal-sheet-container {
+  /* custom styles */
+//   background:rgba(155, 197, 66) !important
+    border-top-right-radius: 40px !important; 
+    border-top-left-radius: 40px !important;
+}
 // .react-modal-sheet-header {
 //   /* custom styles */
 // }
@@ -93,4 +142,5 @@
   /* custom styles */
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: -15px;
 }
