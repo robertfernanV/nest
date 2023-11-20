@@ -205,7 +205,7 @@ const Login = () => {
                 sx={{
                   borderRadius: "50px",
                   bgcolor: "white",
-                  color: "#C4C74A",
+                  color: "white",
                   width: "95vw",
                   height: "40px",
                   fontWeight: "bold",
@@ -213,6 +213,7 @@ const Login = () => {
                   borderColor: "#15e577",
                   border: "1px solid",
                 }}
+                className="btnInsta"
               >
                 Continuar con Instagram
               </ButtonBase>
