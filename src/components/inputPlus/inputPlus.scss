@@ -1,0 +1,104 @@
+.input-container {
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .textSection{
+    display: flex;
+  }
+  
+
+.title{
+    font-family: "Inter";
+    font-size: "16px";
+    color: #FB9825;
+    align-self: flex-start;
+    margin-left: 0.5rem;
+    margin-bottom: 5px;
+}
+
+  .custom-input {
+    border: 2px solid #FB9825;
+    border-radius: 20px 0 0 20px;
+    padding: 10px;
+    width: 230px;
+
+  }
+  
+  .custom-button {
+    background-color: #FB9825;
+    color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    padding: 10px;
+    cursor: pointer;
+    width: 40px;
+    height: 39px;
+    // flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .plus-sign2 {
+    font-size: 1.5em; 
+    margin: 0 auto; 
+  }
+
+
+.tags{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &__title{
+    color: #7F8C8D;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: flex-start;
+    margin-left: 0.5rem;
+    margin-bottom: 5px;
+    margin-top: 7px;
+  }
+}
+
+.tag-container{
+  border-radius: 5px;
+  background: #ECEFF1;
+  min-width: 163px;
+  width: 163px;
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+
+  &__text{
+    color: #000;
+    font-family: Inder;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-items: center;
+    margin-top: 2px;
+    margin-left: 8px;
+    margin-bottom: 5px;
+  }
+
+  &__button{
+    background: #ECEFF1;
+    border: none;
+    border-radius: 5px;
+
+    &__simbol{
+      width: 12px;
+      height: 15px;
+      color: #7D7D7D;
+      font-weight: bold;
+    }
+  }
+}

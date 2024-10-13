@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -19,10 +19,11 @@ import { useDispatch } from "react-redux";
 import { Box, Drawer, Typography, Switch, Grid } from "@mui/material";
 
 const Menu = () => {
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [activateRoutes, setActivateRoutes] = useState({
+  // const [activateRoutes, setActivateRoutes] = useState({
+  const [activateRoutes] = useState({
     babyDetailRoute: "#00000040",
     taskListRoute: "#00000040",
     galeryRoute: "#00000040",

@@ -8,10 +8,6 @@ export const getChildren = createAsyncThunk(
     try {
       const db = await Firebase.getDb();
       try {
-        // const snapshot = await getDocs(collection(db, "childrenActivities"));
-        // const data = snapshot.docs.map((doc) => doc.data());
-        // console.log({ data });
-
         const childrenActivitiesRef = collection(db, "childrenActivities");
         const childrensQuery = query(
           childrenActivitiesRef,
@@ -20,7 +16,7 @@ export const getChildren = createAsyncThunk(
 
         const querySnapshot = await getDocs(childrensQuery);
         const data = querySnapshot.docs.map((doc) => doc.data());
-        return [...data];
+        return data.map((child) => ({ ...child, selected: false }));
       } catch (err) {
         throw new Error("No se pudieron obtener los usuarios desde Firestore.");
       }
@@ -46,6 +42,16 @@ const childrenSlice = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
+    setChildrenSelected: (state, action) => {
+      state.data.forEach((child) => {
+        if (child.childrenId !== action.payload.id && child.selected) {
+          child.selected = false;
+        }
+        if (child.childrenId === action.payload.id) {
+          child.selected = action.payload.selected;
+        }
+      });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getChildren.pending, (state) => {
@@ -63,5 +69,5 @@ const childrenSlice = createSlice({
   },
 });
 
-export const { setLoading } = childrenSlice.actions;
+export const { setLoading, setChildrenSelected } = childrenSlice.actions;
 export default childrenSlice.reducer;

@@ -1,33 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { auth } from "../../firebase/firebaseConfig"; // Importa el objeto auth de tu archivo firebase.js
-// import { db } from "../../firebase/firebaseConfig"; // Importa el objeto db de tu archivo firebase.js
-// import { getToken } from "../../firebase/firebaseConfig";
 import Firebase from "../../firebase/firebaseConfig";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore"; // Importa las funciones doc y getDoc de la librería de Firestore
-
-// Función auxiliar para obtener el token de autenticación actual
-// export const getToken = async () => {
-//   const user = auth.currentUser;
-
-//   if (user) {
-//     return user.getIdToken();
-//   } else {
-//     return null;
-//   }
-// };
 
 // Acción asíncrona para obtener la lista de usuarios desde Firebase
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const db = await Firebase.getDb();
   try {
     // Realizar la consulta a Firestore para obtener los usuarios
-
     const snapshot = await getDocs(collection(db, "users"));
     const users = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
-    console.log({ users });
     return users;
   } catch (error) {
     throw new Error("No se pudieron obtener los usuarios desde Firestore.");
@@ -89,9 +73,15 @@ const usersSlice = createSlice({
   initialState: initialState(),
   reducers: {
     setFamilySelected: (state, action) => {
-      state.data.families.find(
-        (family) => family.id === action.payload.id
-      ).selected = action.payload.selected;
+      state.data.families.forEach((family) => {
+        if (family.id !== action.payload.id && family.selected) {
+          family.selected = false;
+        }
+        if (family.id === action.payload.id) {
+          family.selected = action.payload.selected;
+        }
+      });
+
       localStorage.setItem("user", JSON.stringify({ ...state }));
     },
     clearState: () => ({

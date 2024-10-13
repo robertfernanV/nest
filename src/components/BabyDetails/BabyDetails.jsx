@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import "./BabyDetails.scss";
-import { Link } from "react-router-dom";
 import { FernandezFamilyData } from "../../data";
 import BabyCard from "../../components/BabyCard/BabyCard";
 import { Box, Modal, Typography } from "@mui/material";
 import NavBar from "../../components/NavBar/NavBar";
 import Menu from "../../components/Menu/Menu";
 import { useNavigate } from "react-router-dom";
-import SettingsAccessibilityIcon from "@mui/icons-material/SettingsAccessibility";
 import ContentModalNote from "../../components/BabyCard/ContentModalNote";
 import ContentModalSnap from "../../components/BabyCard/ContentModalSnap";
 import ContentModalEvacuation from "../../components/BabyCard/ContentModalEvacuation";
@@ -24,7 +22,7 @@ function BabyDetails() {
   const handleOpenActionModal = () => setOpenActionModal(true);
   const handleCloseActionModal = () => setOpenActionModal(false);
 
-  const [babySelected, setBabySelected] = useState({
+  const [babySelected] = useState({
     id: 3,
     familyId: 12345,
   });

@@ -4,13 +4,24 @@ import { Link } from "react-router-dom";
 import AlanApp from "../../assets/images/alanApp.jpeg";
 import RuthApp from "../../assets/images/ruthApp.jpeg";
 import "./BabyCard.scss";
+import { useDispatch } from "react-redux";
+import { setChildrenSelected } from "../../store/slices/childrenSlice";
 
 function BabyCard_Selected({ activity, mt }) {
+  const dispatch = useDispatch();
   const [card] = useState(activity);
   const [margin] = useState(`${mt}rem`);
+
+  const handleClick = (id) => {
+    dispatch(setChildrenSelected({ id, selected: true }));
+  };
   return (
     <>
-      <Link className="baby_no_link" to={"/babyDetails"}>
+      <Link
+        className="baby_no_link"
+        to={"/babyDetails"}
+        onClick={() => handleClick(activity.childrenId)}
+      >
         <Card
           sx={{
             marginX: "0.5rem",

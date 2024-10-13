@@ -28,14 +28,10 @@ function FamilyParticipants() {
     setChildrens(data);
   }, [data]);
 
-  useEffect(() => {
-    console.log({ childrens });
-  }, [childrens]);
-
   window.scrollTo(0, 0);
   return (
     <>
-      {childrens.length > 0 &&
+      {childrens?.length > 0 &&
         childrens.map((children, index) => (
           <BabyCard_Selected
             key={index}

@@ -1,57 +1,254 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
-import AddIcon from "@mui/icons-material/Add";
 import "./Panial_Pelela.scss";
+import InputPlus from "../inputPlus/InputPlus";
+import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { addChildActivity, setData } from "../../store/slices/actionSlice";
 
-// const styles = {
-//   input: {
-//     marginBottom: "35px",
-//     "& fieldset": {
-//       borderRadius: "50px",
-//     },
-//     "& .MuiOutlinedInput-root": {
-//       "&.Mui-focused fieldset": {
-//         borderColor: "#FB9825",
-//       },
-//     },
-//     "& .MuiInputLabel-shrink": {
-//       color: "#FB9825 !important",
-//     },
-//   },
-//   button: {
-//     backgroundColor: "#FB9825", // Color de fondo del IconButton
-//     color: "white", // Color del ícono
-//     borderRadius: "0 50px 50px 0", // Ajusta según tus necesidades
-//   },
-// };
+const getRoundedTime = () => {
+  const now = moment();
+  const minutes = now.minutes();
+  const roundedMinutes = minutes < 15 ? 0 : minutes < 45 ? 30 : 0;
+  const roundedHour = minutes >= 45 ? now.add(1, "hour").hour() : now.hour();
 
-const MyComponent = () => {
+  const roundedTime = moment(now).set({
+    hour: roundedHour,
+    minute: roundedMinutes,
+    second: 0,
+    millisecond: 0,
+  });
+
+  return roundedTime.format("h:mm a");
+};
+
+const TimeValues = ({ time, onTimeChange }) => {
+  const timeRange = [
+    {
+      value: "8:00 am",
+      text: "8:00 am",
+    },
+    {
+      value: "8:30 am",
+      text: "8:30 am",
+    },
+    {
+      value: "9:00 am",
+      text: "9:00 am",
+    },
+    {
+      value: "9:30 am",
+      text: "9:30 am",
+    },
+    {
+      value: "10:00 am",
+      text: "10:00 am",
+    },
+    {
+      value: "10:30 am",
+      text: "10:30 am",
+    },
+    {
+      value: "11:00 am",
+      text: "11:00 am",
+    },
+    {
+      value: "11:30 am",
+      text: "11:30 am",
+    },
+    {
+      value: "12:00 am",
+      text: "12:00 am",
+    },
+    {
+      value: "12:30 pm",
+      text: "12:30 pm",
+    },
+    {
+      value: "1:00 pm",
+      text: "1:00 pm",
+    },
+    {
+      value: "1:30 pm",
+      text: "1:30 pm",
+    },
+    {
+      value: "2:00 pm",
+      text: "2:00 pm",
+    },
+    {
+      value: "2:30 pm",
+      text: "2:30 pm",
+    },
+    {
+      value: "3:00 pm",
+      text: "3:00 pm",
+    },
+    {
+      value: "3:30 pm",
+      text: "3:30 pm",
+    },
+    {
+      value: "4:00 pm",
+      text: "4:00 pm",
+    },
+    {
+      value: "4:30 pm",
+      text: "4:30 pm",
+    },
+    {
+      value: "5:00 pm",
+      text: "5:00 pm",
+    },
+    {
+      value: "5:30 pm",
+      text: "5:30 pm",
+    },
+    {
+      value: "6:00 pm",
+      text: "6:00 pm",
+    },
+    {
+      value: "6:30 pm",
+      text: "6:30 pm",
+    },
+  ];
   return (
-    <div className="input-container">
-      <input type="text" placeholder="Tu etiqueta" className="custom-input" />
-      <button className="custom-button" type="button">
-        <span className="plus-sign">+</span>
-      </button>
-    </div>
+    <>
+      <span
+        style={{
+          fontFamily: "Inter",
+          fontSize: "16px",
+          color: "#FB9825",
+          position: "absolute",
+          left: "4rem",
+        }}
+      >
+        Hora
+      </span>
+      <select
+        style={{
+          width: "140px",
+          marginTop: "1.2rem",
+          marginLeft: "1.5rem",
+          marginBottom: "1rem",
+          textAlign: "center",
+          borderRadius: "20px",
+          color: "#D9D9D9",
+          fontSize: "16px",
+          fontFamily: "Inter",
+          background: "transparent",
+          height: "40px",
+          border: "1px solid #FB9825",
+        }}
+        value={time}
+        onChange={onTimeChange}
+      >
+        {timeRange.map(({ value, text }) => (
+          <option value={value} key={text}>
+            {text}
+          </option>
+        ))}
+      </select>
+    </>
   );
 };
 
-const Panial_Pelela = () => {
-  const [metodo, setMetodo] = useState(1);
-  const [TipoSelected, setTipoSelected] = useState(0);
-  const [tags, setTags] = useState([]);
+const Panial_Pelela = ({ saveData, setSaveData }) => {
+  const [formValues, setFormValues] = useState({
+    typeAction: "",
+    data: {
+      time: "",
+      type: "",
+      observations: [],
+      note: "",
+    },
+  });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (saveData) {
+      dispatch(setData(formValues));
+      dispatch(addChildActivity()).finally(() => {
+        setSaveData(false);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [saveData]);
+
+  const handleTimeChange = (event) => {
+    setFormValues({
+      ...formValues,
+      data: { ...formValues.data, time: event.target.value },
+    });
+  };
+
+  const addTagHandler = (tag) => {
+    setFormValues({
+      ...formValues,
+      data: {
+        ...formValues.data,
+        observations: [...formValues.data.observations, tag],
+      },
+    });
+  };
+
+  const removeTagHandler = (tag) => {
+    setFormValues({
+      ...formValues,
+      data: {
+        ...formValues.data,
+        observations: formValues.data.observations.filter(
+          (ftag) => ftag !== tag
+        ),
+      },
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleNowChange = (e) => {
+    console.log("changne", e.target.checked);
+    if (e.target.checked) {
+      setFormValues({
+        ...formValues,
+        data: { ...formValues.data, time: getRoundedTime() },
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+        data: { ...formValues.data, time: "" },
+      });
+    }
+  };
+
+  const handleTypeChange = (name) => {
+    setFormValues({
+      ...formValues,
+      data: { ...formValues.data, type: name },
+    });
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <Grid container spacing={2} style={{ marginTop: "0rem" }}>
         <Grid style={{ textAlign: "center" }} item xs={6}>
           <button
-            onClick={() => setMetodo(1)}
+            onClick={() =>
+              setFormValues({
+                ...formValues,
+                typeAction: "Pañal",
+              })
+            }
             style={{
               border: "none",
               background: "transparent",
-              borderBottom: `${metodo === 1 ? "2px" : "0px"} solid #FB9825`,
+              borderBottom: `${
+                formValues.typeAction === "Pañal" ? "2px" : "0px"
+              } solid #FB9825`,
             }}
           >
             <svg
@@ -105,11 +302,18 @@ const Panial_Pelela = () => {
         </Grid>
         <Grid style={{ textAlign: "center" }} item xs={6}>
           <button
-            onClick={() => setMetodo(2)}
+            onClick={() =>
+              setFormValues({
+                ...formValues,
+                typeAction: "Pelela",
+              })
+            }
             style={{
               border: "none",
               background: "transparent",
-              borderBottom: `${metodo === 2 ? "2px" : "0px"} solid #FB9825`,
+              borderBottom: `${
+                formValues.typeAction === "Pelela" ? "2px" : "0px"
+              } solid #FB9825`,
             }}
           >
             <svg
@@ -155,7 +359,6 @@ const Panial_Pelela = () => {
           </button>
         </Grid>
       </Grid>
-
       {/* CONTENIDO */}
       <>
         <div
@@ -173,43 +376,10 @@ const Panial_Pelela = () => {
             }}
           >
             <div style={{ display: "flex" }}>
-              <span
-                style={{
-                  fontFamily: "Inter",
-                  fontSize: "16px",
-                  color: "#FB9825",
-                  position: "absolute",
-                  left: "4rem",
-                }}
-              >
-                Hora
-              </span>
-              <select
-                style={{
-                  width: "140px",
-                  marginTop: "1.2rem",
-                  marginLeft: "1.5rem",
-                  marginBottom: "1rem",
-                  textAlign: "center",
-                  borderRadius: "20px",
-                  color: "#D9D9D9",
-                  fontSize: "16px",
-                  fontFamily: "Inter",
-                  background: "transparent",
-                  height: "40px",
-                  border: "1px solid #FB9825",
-                }}
-                name=""
-                id=""
-              >
-                <option value="8am">8:00am</option>
-                <option value="9am">9:00am</option>
-                <option value="10am">10:00am</option>
-                <option value="11am">11:00am</option>
-                <option value="12am">12:00am</option>
-                <option value="1pm">1:00pm</option>
-                <option value="2pm">2:00pm</option>
-              </select>
+              <TimeValues
+                time={formValues.time}
+                onTimeChange={handleTimeChange}
+              />
             </div>
             <div
               style={{
@@ -224,6 +394,7 @@ const Panial_Pelela = () => {
                 type="checkbox"
                 name=""
                 id=""
+                onChange={handleNowChange}
               />
               <p style={{ margin: "auto 0px auto 0px", color: "#000000" }}>
                 Ahora
@@ -251,12 +422,14 @@ const Panial_Pelela = () => {
               }}
             >
               <button
-                onClick={() => setTipoSelected(1)}
+                onClick={() => handleTypeChange("Pis")}
                 style={{
                   borderRadius: "20px",
                   width: "80px",
                   background: "#FDD402",
-                  border: `${TipoSelected === 1 ? "2px" : "1px"} solid #95A5A6`,
+                  border: `${
+                    formValues.data.type === "Pis" ? "2px" : "1px"
+                  } solid #95A5A6`,
                   fontFamily: "Inter",
                   fontSize: "14px",
                 }}
@@ -264,12 +437,14 @@ const Panial_Pelela = () => {
                 Pis
               </button>
               <button
-                onClick={() => setTipoSelected(2)}
+                onClick={() => handleTypeChange("Popó")}
                 style={{
                   borderRadius: "20px",
                   width: "80px",
                   background: "#B49375",
-                  border: `${TipoSelected === 2 ? "2px" : "1px"} solid black`,
+                  border: `${
+                    formValues.data.type === "Popó" ? "2px" : "1px"
+                  } solid black`,
                   fontFamily: "Inter",
                   fontSize: "14px",
                   marginLeft: "0.5rem",
@@ -279,12 +454,14 @@ const Panial_Pelela = () => {
                 Popó
               </button>
               <button
-                onClick={() => setTipoSelected(3)}
+                onClick={() => handleTypeChange("Pis + Popó")}
                 style={{
                   borderRadius: "20px",
                   width: "80px",
                   background: "#C4C74A",
-                  border: `${TipoSelected === 3 ? "2px" : "1px"} solid black`,
+                  border: `${
+                    formValues.data.type === "Pis + Popó" ? "2px" : "1px"
+                  } solid black`,
                   fontFamily: "Inter",
                   fontSize: "14px",
                 }}
@@ -294,13 +471,15 @@ const Panial_Pelela = () => {
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <button
-                onClick={() => setTipoSelected(4)}
+                onClick={() => handleTypeChange("Seco")}
                 style={{
                   borderRadius: "20px",
                   width: "80px",
                   background: "#B1DDEE",
                   margin: "0px 0.2rem 0px 0.2rem",
-                  border: `${TipoSelected === 4 ? "2px" : "1px"} solid #1E88E5`,
+                  border: `${
+                    formValues.data.type === "Seco" ? "2px" : "1px"
+                  } solid #1E88E5`,
                   fontFamily: "Inter",
                   fontSize: "14px",
                 }}
@@ -308,13 +487,15 @@ const Panial_Pelela = () => {
                 Seco
               </button>
               <button
-                onClick={() => setTipoSelected(5)}
+                onClick={() => handleTypeChange("Accidente")}
                 style={{
                   borderRadius: "20px",
                   width: "80px",
                   background: "#EF7E7E",
                   margin: "0px 0.2rem 0px 0.2rem",
-                  border: `${TipoSelected === 5 ? "2px" : "1px"} solid black`,
+                  border: `${
+                    formValues.data.type === "Accidente" ? "2px" : "1px"
+                  } solid black`,
                   fontFamily: "Inter",
                   fontSize: "14px",
                 }}
@@ -323,7 +504,13 @@ const Panial_Pelela = () => {
               </button>
             </div>
           </section>
-
+          <div className="divider">
+            <InputPlus
+              tags={formValues.data.observations}
+              addTagHandler={addTagHandler}
+              removeTagHandler={removeTagHandler}
+            />
+          </div>
           <span
             style={{
               fontFamily: "Inter",
@@ -356,12 +543,18 @@ const Panial_Pelela = () => {
               id=""
               cols="30"
               rows="10"
+              value={formValues.data.note}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  data: { ...formValues.data, note: e.target.value },
+                })
+              }
             ></textarea>
           </center>
         </div>
       </>
-    </>
-    // <MyComponent />
+    </form>
   );
 };
 
