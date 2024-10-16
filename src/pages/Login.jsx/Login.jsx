@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sheet from "react-modal-sheet";
 import logoHome from "../../assets/logohome.png";
 import ButtonBase from "@mui/material/ButtonBase";
@@ -7,15 +7,28 @@ import Firebase from "../../firebase/firebaseConfig";
 import { setLoading, setError, setUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { fetchUserById } from "../../store/slices/userSlice";
-import { Link, Navigate } from "react-router-dom";
+import { fetchFamilyByEmail } from "../../store/slices/userSlice";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" }); //{email:"",password:""
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const user = useSelector((state) => state.user.data);
+
+  useEffect(() => {
+    if (user && user.families) {
+      if (user.role === "admin") {
+        navigate(`/familyParticipants/${user.families[0].id}`);
+      } else {
+        navigate("/familyList");
+      }
+    }
+  }, [user, navigate]);
+
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -29,9 +42,9 @@ const Login = () => {
         formData.password
       );
       dispatch(setUser(response.user));
-      // dispatch(fetchUsers());
-      dispatch(fetchUserById(response.user.uid));
+      dispatch(fetchFamilyByEmail(response.user.email));
     } catch (error) {
+      console.log({ error });
       dispatch(setError(error.message));
     } finally {
       dispatch(setLoading(false));
@@ -47,7 +60,6 @@ const Login = () => {
   // };
   return (
     <>
-      {user && user.families && <Navigate to="/familyList" />}
       <div className="big_container">
         <div className="container">
           <img src={logoHome} alt="logo" className="logo" />
@@ -85,11 +97,7 @@ const Login = () => {
           <Sheet.Header />
           <Sheet.Content>
             <section>
-              <p
-                className="bsTitle"
-              >
-                Ingrese sus datos
-              </p>
+              <p className="bsTitle">Ingrese sus datos</p>
               <TextField
                 label="Correo"
                 name="email"
@@ -170,9 +178,7 @@ const Login = () => {
             </section>
             <section>
               <div className="link_container">
-                <Link className="link">
-                  Olvidé mi contraseña
-                </Link>
+                <Link className="link">Olvidé mi contraseña</Link>
               </div>
               <p className="formOptions">o</p>
               <ButtonBase
