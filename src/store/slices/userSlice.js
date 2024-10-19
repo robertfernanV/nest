@@ -68,7 +68,6 @@ export const fetchFamilyByEmail = createAsyncThunk(
   "users/fetchFamilyByEmail",
   async (email) => {
     const token = await Firebase.getToken();
-    debugger;
     if (token) {
       const db = await Firebase.getDb();
       try {

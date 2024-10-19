@@ -3,8 +3,8 @@ import { Grid } from "@mui/material";
 import "./Panial_Pelela.scss";
 import InputPlus from "../inputPlus/InputPlus";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
-import { addChildActivity, setData } from "../../store/slices/actionSlice";
+import { useDispatch } from "react-redux";
+import { setData } from "../../store/slices/actionSlice";
 
 const getRoundedTime = () => {
   const now = moment();
@@ -22,6 +22,7 @@ const getRoundedTime = () => {
   return roundedTime.format("h:mm a");
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 const TimeValues = ({ time, onTimeChange }) => {
   const timeRange = [
     {
@@ -59,58 +60,6 @@ const TimeValues = ({ time, onTimeChange }) => {
     {
       value: "12:00 am",
       text: "12:00 am",
-    },
-    {
-      value: "12:30 pm",
-      text: "12:30 pm",
-    },
-    {
-      value: "1:00 pm",
-      text: "1:00 pm",
-    },
-    {
-      value: "1:30 pm",
-      text: "1:30 pm",
-    },
-    {
-      value: "2:00 pm",
-      text: "2:00 pm",
-    },
-    {
-      value: "2:30 pm",
-      text: "2:30 pm",
-    },
-    {
-      value: "3:00 pm",
-      text: "3:00 pm",
-    },
-    {
-      value: "3:30 pm",
-      text: "3:30 pm",
-    },
-    {
-      value: "4:00 pm",
-      text: "4:00 pm",
-    },
-    {
-      value: "4:30 pm",
-      text: "4:30 pm",
-    },
-    {
-      value: "5:00 pm",
-      text: "5:00 pm",
-    },
-    {
-      value: "5:30 pm",
-      text: "5:30 pm",
-    },
-    {
-      value: "6:00 pm",
-      text: "6:00 pm",
-    },
-    {
-      value: "6:30 pm",
-      text: "6:30 pm",
     },
   ];
   return (
@@ -154,25 +103,25 @@ const TimeValues = ({ time, onTimeChange }) => {
   );
 };
 
-const Panial_Pelela = ({ saveData, setSaveData }) => {
-  const [formValues, setFormValues] = useState({
-    typeAction: "",
-    data: {
-      time: "",
-      type: "",
-      observations: [],
-      note: "",
-    },
-  });
+const initialData = {
+  typeAction: "",
+  data: {
+    time: "",
+    type: "",
+    observations: [],
+    note: "",
+  },
+};
+
+const Panial_Pelela = ({ saveData }) => {
+  const [formValues, setFormValues] = useState(initialData);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (saveData) {
+    if (saveData && formValues.data.time !== "") {
       dispatch(setData(formValues));
-      dispatch(addChildActivity()).finally(() => {
-        setSaveData(false);
-      });
+      setFormValues(initialData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [saveData]);

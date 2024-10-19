@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 
@@ -15,6 +15,9 @@ import Medicacion from "../../components/AddAction/Medicacion";
 import Panial_Pelela from "../../components/AddAction/Panial_Pelela";
 import BackArrow from "../../assets/images/arrowBack.svg";
 import AddMoreActions from "./AddMoreAction";
+
+import { useDispatch } from "react-redux";
+import { addChildActivity } from "../../store/slices/actionSlice";
 
 const style = {
   position: "absolute",
@@ -35,9 +38,18 @@ const AddAction = () => {
   const [open, setOpen] = useState(false);
   const [saveData, setSaveData] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    setSaveData(open);
+  }, [open]);
 
   const handleMoveSite = (sitio) => {
     navigate(`/addAction/${sitio}`);
@@ -45,7 +57,10 @@ const AddAction = () => {
   };
   const handleCancelarModal = () => handleClose();
   const handleGuardarModal = async () => {
-    setSaveData(true);
+    dispatch(addChildActivity()).finally(() => {
+      setSaveData(false);
+      navigate("/babyDetails");
+    });
   };
 
   const handleMenu = () => navigate("/babyDetails");
