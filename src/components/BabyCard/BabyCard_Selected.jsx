@@ -56,7 +56,7 @@ function BabyCard_Selected({ activity, mt }) {
               }}
             >
               <p className="familyParticipants__card">{card.name}</p>
-              <p className="familyParticipants__age">{card.age} Meses</p>
+              <p className="familyParticipants__age">{card.age}</p>
               <Box
                 sx={{
                   display: "flex",

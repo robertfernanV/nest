@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 const initialState = {
   data: [],
@@ -30,6 +35,7 @@ export const addChildActivity = createAsyncThunk(
           ...act,
           idFamily,
           childrenId,
+          createdAt: serverTimestamp(),
         });
       });
 

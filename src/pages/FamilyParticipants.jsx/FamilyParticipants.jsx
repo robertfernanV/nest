@@ -30,7 +30,7 @@ function FamilyParticipants() {
 
   window.scrollTo(0, 0);
   return (
-    <>
+    <div style={{ paddingBottom: "80px" }}>
       {childrens?.length > 0 &&
         childrens.map((children, index) => (
           <BabyCard_Selected
@@ -39,7 +39,7 @@ function FamilyParticipants() {
             mt={index === 0 ? 4 : 2}
           />
         ))}
-    </>
+    </div>
   );
 }
 

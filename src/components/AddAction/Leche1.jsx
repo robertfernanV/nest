@@ -277,10 +277,10 @@ const Leche1 = ({ metodo: typeAction, saveData }) => {
             id=""
             onChange={handlePeriodChange}
           >
-            <option value="15">15 min</option>
-            <option value="30">30 min</option>
-            <option value="45">45 min</option>
-            <option value="60">60 min</option>
+            <option value="15 min">15 min</option>
+            <option value="30 min">30 min</option>
+            <option value="45 min">45 min</option>
+            <option value="60 min">60 min</option>
           </select>
         </section>
 

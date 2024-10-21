@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { setData } from "../../store/slices/actionSlice";
 
-const TimeValues = ({ time, onTimeChange }) => {
+const TimeValues = ({ title, time, name, onTimeChange }) => {
   const timeRange = [
     {
       value: "8:00 am",
@@ -50,7 +53,7 @@ const TimeValues = ({ time, onTimeChange }) => {
           left: "4rem",
         }}
       >
-        Hora
+        {title}
       </span>
       <select
         style={{
@@ -69,6 +72,7 @@ const TimeValues = ({ time, onTimeChange }) => {
         }}
         value={time}
         onChange={onTimeChange}
+        name={name}
       >
         {timeRange.map(({ value, text }) => (
           <option value={value} key={text}>
@@ -80,18 +84,46 @@ const TimeValues = ({ time, onTimeChange }) => {
   );
 };
 
-const Leche2 = () => {
-  const [formValues, setFormValues] = useState({
-    typeAction: "",
-    data: {
-      type: "",
-      timeStart: "",
-      timeEnd: "",
-      period: "",
-      place: "",
-      note: "",
-    },
+const getRoundedTime = () => {
+  const now = moment();
+  const minutes = now.minutes();
+  const roundedMinutes = minutes < 15 ? 0 : minutes < 45 ? 30 : 0;
+  const roundedHour = minutes >= 45 ? now.add(1, "hour").hour() : now.hour();
+
+  const roundedTime = moment(now).set({
+    hour: roundedHour,
+    minute: roundedMinutes,
+    second: 0,
+    millisecond: 0,
   });
+
+  return roundedTime.format("h:mm a");
+};
+
+const initialData = {
+  typeAction: "",
+  data: {
+    time: "",
+    quantity: "",
+    note: "",
+  },
+};
+
+const Leche2 = ({ metodo: typeAction, saveData }) => {
+  const [formValues, setFormValues] = useState({ ...initialData, typeAction });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (saveData && formValues.data.time !== "") {
+      dispatch(setData(formValues));
+      setFormValues(initialData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [saveData]);
+
+  useEffect(() => {
+    setFormValues({ ...formValues, typeAction });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typeAction]);
 
   const handleTimeChange = (event) => {
     setFormValues({
@@ -99,6 +131,28 @@ const Leche2 = () => {
       data: { ...formValues.data, [event.target.name]: event.target.value },
     });
   };
+
+  const handleNowChange = (event) => {
+    if (event.target.checked) {
+      setFormValues({
+        ...formValues,
+        data: { ...formValues.data, [event.target.name]: getRoundedTime() },
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+        data: { ...formValues.data, [event.target.name]: "" },
+      });
+    }
+  };
+
+  const handleQuantiyChange = (event) => {
+    setFormValues({
+      ...formValues,
+      data: { ...formValues.data, quantity: event.target.value },
+    });
+  };
+
   return (
     <>
       <div
@@ -117,6 +171,8 @@ const Leche2 = () => {
         >
           <div style={{ display: "flex" }}>
             <TimeValues
+              title="Hora"
+              name={"time"}
               time={formValues.time}
               onTimeChange={handleTimeChange}
             />
@@ -132,8 +188,9 @@ const Leche2 = () => {
             <input
               style={{ width: "20px", height: "20px", marginRight: "1rem" }}
               type="checkbox"
-              name=""
+              name="time"
               id=""
+              onChange={handleNowChange}
             />
             <p style={{ margin: "auto 0px auto 0px", color: "#000000" }}>
               Ahora
@@ -170,12 +227,13 @@ const Leche2 = () => {
               height: "40px",
               border: "1px solid #FB9825",
             }}
-            name=""
+            name="quantity"
             id=""
+            onChange={handleQuantiyChange}
           >
-            <option value="200">200 cc</option>
-            <option value="400">400 cc</option>
-            <option value="600">600 cc</option>
+            <option value="200 cc">200 cc</option>
+            <option value="400 cc">400 cc</option>
+            <option value="600 cc">600 cc</option>
           </select>
         </section>
 
@@ -211,6 +269,12 @@ const Leche2 = () => {
             id=""
             cols="30"
             rows="10"
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                data: { ...formValues.data, note: e.target.value },
+              })
+            }
           ></textarea>
         </center>
       </div>
